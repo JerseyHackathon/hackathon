@@ -32,8 +32,9 @@
 //     </html>
 //   );
 // }
+import React from "react";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 import "./globals.css";
 
 export default function RootLayout({
@@ -44,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        <Navbar /> 
         {children}
         <Footer/>
       </body>

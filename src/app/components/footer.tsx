@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+
 const Footer = () => {
     return(
         <footer className="bg-gray-900 text-white">
@@ -11,7 +12,7 @@ const Footer = () => {
                      </h2>
                 </div>
                 <div>
-                      <h2 className="text-1g font-bold mb-4"><Link href="/" className="hover:underline">Contact Us</Link>
+                      <h2 className="text-1g font-bold mb-4"><Link href="/contact" className="hover:underline">Contact Us</Link>
                       </h2>
            </div>
                        <h2 className="text-lg font-bold">Follow Us</h2>

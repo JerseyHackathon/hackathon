@@ -1,4 +1,8 @@
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
  import Image from "next/image";
+ import React from "react";
+ import Footer from "./components/footer";
+ import Contact from "./components/contact";
 // //
 // // export default function Home() {
 // //   return (
@@ -22,7 +26,7 @@
 // //           </li>
 // //           <li>Save and see your changes instantly.</li>
 // //         </ol>
-//
+
 //         <div className="flex gap-4 items-center flex-col sm:flex-row">
 //           <a
 //             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
@@ -101,15 +105,16 @@
 // }
 export default function Home() {
   return (
-//     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-//       <h1 className="text-4xl font-bold text-blue-600">Welcome to Our Landing Page</h1>
-//       <p className="mt-4 text-lg text-gray-700">A modern landing page built with Next.js</p>
-//       <button className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-//         Get Started
-//       </button>
-//     </main>
 <div>
       <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
-    </div>
+      <p>This is a wonderful App
+
+
+
+
+
+      </p>
+      
+  </div>
   );
 }
