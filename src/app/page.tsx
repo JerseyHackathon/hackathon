@@ -3,6 +3,7 @@
  import Contact from "./contact/page";
  import Donate from "./Donate/page";
  import AboutUs from "./about/page";
+ import Image from "next/image";
 // //
 // // export default function Home() {
 // //   return (
@@ -105,18 +106,19 @@
 // }
 export default function Home() {
   return (
-<div>
-      <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
+<div className= "min-h-screen flex flex-col items-center justify-center">
+  <div className="w-full max-w-4x1 mx-auto text-center justify-center">
+    <div className="w-full mb-6">
+      <img src="https://images.unsplash.com/photo-1572424117831-005b5e9b3ae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lYWx8ZW58MHx8MHx8fDA%3D"alt="food"width={1200} height={100} className="w-full h-auto object-cover rounded-1g shadow-md"/>
+    </div>
+      {/* <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
       <p>This is a wonderful App
       </p>
-      
-  {/* <div className="mt-8">
-        <img 
-          src="https://images.unsplash.com/photo-1711394370771-817a30b06215?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDM0M3x4alBSNGhsa0JHQXx8ZW58MHx8fHx8" 
-          alt="Landing Image" 
-          className="w-full h-auto rounded-lg shadow-lg"
-        />
-      </div> */}
+       */}
+       <div className="flex-grow p-6 text-center">
+        <p>Welcome to Our App</p>
+       </div>
+  </div>
   </div>
   );
 }

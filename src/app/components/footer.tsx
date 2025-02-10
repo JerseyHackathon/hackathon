@@ -6,7 +6,7 @@ import Link from "next/link";
 const Footer = () => {
     return(
         <footer className="bg-gray-900 text-white">
-            <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7">
+            <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-1">
                 <div >
                      <h2 className="text-1g font-bold mb-4"><Link href="/" className="hover:underline">PantryPal</Link>
                      </h2>

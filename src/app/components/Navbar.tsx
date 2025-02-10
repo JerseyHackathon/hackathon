@@ -13,22 +13,22 @@
 
               <ul className="flex space-x-6">
               <li>
-                  <Link href="/donate" className="text-gray-700 hover:text-blue-600">
+                  <Link href="/donate" className="text-gray-700 font-bold mb-4 hover:text-blue-600">
                     Donate
                   </Link>
                 </li>
                 <li>
-                  <Link href="/locations" className="text-gray-700 hover:text-blue-600">
+                  <Link href="/locations" className="text-gray-700 font-bold mb-4 hover:text-blue-600">
                     Find Pantry
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-gray-700 hover:text-blue-600">
+                  <Link href="/about" className="text-gray-700 font-bold mb-4 hover:text-blue-600">
                     AboutUs
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-gray-700 hover:text-blue-600">
+                  <Link href="/contact" className="text-gray-700 font-bold mb-4 hover:text-blue-600">
                     Contact
                   </Link>
                 </li>
