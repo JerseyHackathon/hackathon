@@ -1,7 +1,8 @@
 import Image from "next/image";
 // import dynamic from "next/dynamic";
-import FoodPantryMap from "./map"; 
-import FoodListTable from "./FoodListTable";
+import FoodPantryMap from "../../components/map";
+import FoodListTable from "../../components/FoodListTable";
+import { DeepChat } from "deep-chat-react";
 
 export default function Home() {
   return (
@@ -16,12 +17,19 @@ export default function Home() {
           priority
         /> */}
 
-{/* Food Pantry Map Component */}
-<FoodPantryMap />
-<FoodListTable />
-</main>
+        {/* Food Pantry Map Component */}
+        <FoodPantryMap />
+        <FoodListTable />
+        {/* <DeepChat
+          style={{ borderRadius: "10px" }}
+          textInput={{ placeholder: { text: "What is in your pantry?" } }}
+          directConnection={{
+            openAI: {},
+          }}
+        /> */}
+      </main>
 
-        {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+      {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">

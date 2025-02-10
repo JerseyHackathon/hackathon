@@ -14,6 +14,7 @@
     "@mui/base": "^5.0.0-beta.69",
     "@mui/material": "^6.4.3",
     "@react-google-maps/api": "^2.20.5",
+    "deep-chat-react": "^2.1.1",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -23,6 +24,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "daisyui": "^4.12.23",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
