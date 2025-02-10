@@ -1,8 +1,8 @@
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
- import Image from "next/image";
+
  import React from "react";
- import Footer from "./components/footer";
- import Contact from "./components/contact";
+ import Contact from "./contact/page";
+ import Donate from "./Donate/page";
+ import AboutUs from "./about/page";
 // //
 // // export default function Home() {
 // //   return (
@@ -108,13 +108,15 @@ export default function Home() {
 <div>
       <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
       <p>This is a wonderful App
-
-
-
-
-
       </p>
       
+  {/* <div className="mt-8">
+        <img 
+          src="https://images.unsplash.com/photo-1711394370771-817a30b06215?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDM0M3x4alBSNGhsa0JHQXx8ZW58MHx8fHx8" 
+          alt="Landing Image" 
+          className="w-full h-auto rounded-lg shadow-lg"
+        />
+      </div> */}
   </div>
   );
 }

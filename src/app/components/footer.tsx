@@ -7,15 +7,23 @@ const Footer = () => {
     return(
         <footer className="bg-gray-900 text-white">
             <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7">
-                <div>
-                     <h2 className="text-1g font-bold mb-4"><Link href="/" className="hover:underline">Home</Link>
+                <div >
+                     <h2 className="text-1g font-bold mb-4"><Link href="/" className="hover:underline">PantryPal</Link>
                      </h2>
+                     <p>Your Smart Cooking & Pantry Finder.Find local community pantries,</p>
+                      <p>get AI-powered recipe ideas,
+                        and reserve ingredients—all in one app.</p> 
+                       <p>Cook smarter, reduce waste, and enjoy hassle-free meal planning.</p>
+                       <p>Download now and start cooking! </p>
                 </div>
                 <div>
                       <h2 className="text-1g font-bold mb-4"><Link href="/contact" className="hover:underline">Contact Us</Link>
                       </h2>
+                      <p>+1234567890</p>
+                      <p>pantrypal@gmail.com</p>
            </div>
                        <h2 className="text-lg font-bold">Follow Us</h2>
+                       <p></p>
                                  <div className="flex space-x-4">
                                    <Link href="https://facebook.com" target="_blank">
                                      <FaFacebook className="text-xl hover:text-blue-500 transition" />

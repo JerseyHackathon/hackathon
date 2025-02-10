@@ -13,7 +13,7 @@
 
               <ul className="flex space-x-6">
               <li>
-                  <Link href="/" className="text-gray-700 hover:text-blue-600">
+                  <Link href="/donate" className="text-gray-700 hover:text-blue-600">
                     Donate
                   </Link>
                 </li>
@@ -24,7 +24,7 @@
                 </li>
                 <li>
                   <Link href="/about" className="text-gray-700 hover:text-blue-600">
-                    About Us
+                    AboutUs
                   </Link>
                 </li>
                 <li>
@@ -35,4 +35,5 @@
               </ul>
             </nav>
           );
-        }
+        };
+        
