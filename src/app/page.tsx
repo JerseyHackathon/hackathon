@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 // import dynamic from "next/dynamic";
 import FoodPantryMap from "../../components/map";
@@ -20,13 +22,20 @@ export default function Home() {
         {/* Food Pantry Map Component */}
         <FoodPantryMap />
         <FoodListTable />
-        {/* <DeepChat
-          style={{ borderRadius: "10px" }}
+        <DeepChat
+          style={{ borderRadius: "20px", width: "1000px" }}
           textInput={{ placeholder: { text: "What is in your pantry?" } }}
           directConnection={{
-            openAI: {},
+            openAI: {
+              key: `${process.env.NEXT_PUBLIC_openAIKey}`,
+              chat: {
+                max_tokens: 2000,
+                system_prompt:
+                  "Given these food items give me some healthy dishes i can make with them and then assist me with anything i can. Be as concise as possible",
+              },
+            },
           }}
-        /> */}
+        />
       </main>
 
       {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
