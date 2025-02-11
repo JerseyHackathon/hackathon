@@ -9,8 +9,7 @@ import {
 } from "@react-google-maps/api";
 
 const libraries: ("places")[] = ["places"];
-const apiKey = "AIzaSyAlLIRtgdevsihPWBORu7tnngXph0-WhVc";
-
+const apiKey = `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
 interface Location {
   lat: number;
   lng: number;
