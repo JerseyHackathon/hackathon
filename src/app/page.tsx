@@ -7,6 +7,7 @@ import Contact from "./contact/page";
 import Donate from "./Donate/page";
 import AboutUs from "./about/page";
 import Image from "next/image";
+import { DeepChat } from "deep-chat-react";
 // //
 // // export default function Home() {
 // //   return (
