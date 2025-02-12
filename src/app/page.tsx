@@ -1,3 +1,5 @@
+"use client";
+
 // import dynamic from "next/dynamic";
 import FoodPantryMap from "./map";
 import FoodListTable from "./FoodListTable";
