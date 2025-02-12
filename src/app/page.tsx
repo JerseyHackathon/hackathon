@@ -4,13 +4,11 @@ import Image from "next/image";
 // import dynamic from "next/dynamic";
 import FoodPantryMap from "./map"; 
 import FoodListTable from "./FoodListTable";
-
-
  import React from "react";
  import Contact from "./contact/page";
- import Donate from "./Donate/page";
+ import Donate from "./donate/page";
  import AboutUs from "./about/page";
- import Image from "next/image";
+ 
 // //
 // // export default function Home() {
 // //   return (
@@ -228,6 +226,7 @@ export default function Home() {
        <div className="flex-grow p-6 text-center">
         <p>Welcome to Our App</p>
        </div>
+  </div>
   </div>
   </div>
   );
