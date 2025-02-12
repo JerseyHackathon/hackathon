@@ -1,20 +1,12 @@
-
 // import dynamic from "next/dynamic";
-<<<<<<< HEAD
-import FoodPantryMap from "../../components/map";
-import FoodListTable from "../../components/FoodListTable";
-import { DeepChat } from "deep-chat-react";
-
-
-=======
-import FoodPantryMap from "./map"; 
+import FoodPantryMap from "./map";
 import FoodListTable from "./FoodListTable";
->>>>>>> 48d032fa3fd44838e0051cd1cf4de6429e2a83c4
- import React from "react";
- import Contact from "./contact/page";
- import Donate from "./donate/page";
- import AboutUs from "./about/page";
- 
+
+import React from "react";
+import Contact from "./contact/page";
+import Donate from "./Donate/page";
+import AboutUs from "./about/page";
+import Image from "next/image";
 // //
 // // export default function Home() {
 // //   return (
@@ -117,15 +109,20 @@ import FoodListTable from "./FoodListTable";
 // }
 export default function Home() {
   return (
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="w-full max-w-4x1 mx-auto text-center justify-center">
+        <div className="w-full mb-6">
+          <img
+            src="https://images.unsplash.com/photo-1572424117831-005b5e9b3ae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lYWx8ZW58MHx8MHx8fDA%3D"
+            alt="food"
+            width={1200}
+            height={100}
+            className="w-full h-auto object-cover rounded-1g shadow-md"
+          />
 
-<div className= "min-h-screen flex flex-col items-center justify-center">
-  <div className="w-full max-w-4x1 mx-auto text-center justify-center">
-    <div className="w-full mb-6">
-      <img src="https://images.unsplash.com/photo-1572424117831-005b5e9b3ae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lYWx8ZW58MHx8MHx8fDA%3D"alt="food"width={1200} height={100} className="w-full h-auto object-cover rounded-1g shadow-md"/>
-
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        {/* <Image
+          <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+              {/* <Image
           className="dark:invert"
           src="/next.svg"
           alt="Next.js logo"
@@ -134,26 +131,26 @@ export default function Home() {
           priority
         /> */}
 
-        {/* Food Pantry Map Component */}
-        <FoodPantryMap />
-        <FoodListTable />
-        <DeepChat
-          style={{ borderRadius: "20px", width: "1000px" }}
-          textInput={{ placeholder: { text: "What is in your pantry?" } }}
-          directConnection={{
-            openAI: {
-              key: `${process.env.NEXT_PUBLIC_openAIKey}`,
-              chat: {
-                max_tokens: 2000,
-                system_prompt:
-                  "Given these food items give me some healthy dishes i can make with them and then assist me with anything i can. Be as concise as possible",
-              },
-            },
-          }}
-        />
-      </main>
+              {/* Food Pantry Map Component */}
+              <FoodPantryMap />
+              <FoodListTable />
+              <DeepChat
+                style={{ borderRadius: "20px", width: "1000px" }}
+                textInput={{ placeholder: { text: "What is in your pantry?" } }}
+                directConnection={{
+                  openAI: {
+                    key: `${process.env.NEXT_PUBLIC_openAIKey}`,
+                    chat: {
+                      max_tokens: 2000,
+                      system_prompt:
+                        "Given these food items give me some healthy dishes i can make with them and then assist me with anything i can. Be as concise as possible",
+                    },
+                  },
+                }}
+              />
+            </main>
 
-      {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
@@ -190,64 +187,63 @@ export default function Home() {
           </a>
         </div>
       </main> */}
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-
-    </div>
-      {/* <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
+            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+              <a
+                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  aria-hidden
+                  src="/file.svg"
+                  alt="File icon"
+                  width={16}
+                  height={16}
+                />
+                Learn
+              </a>
+              <a
+                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  aria-hidden
+                  src="/window.svg"
+                  alt="Window icon"
+                  width={16}
+                  height={16}
+                />
+                Examples
+              </a>
+              <a
+                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  aria-hidden
+                  src="/globe.svg"
+                  alt="Globe icon"
+                  width={16}
+                  height={16}
+                />
+                Go to nextjs.org →
+              </a>
+            </footer>
+          </div>
+          {/* <h1 className="text-2xl font-bold">Welcome to the Homepage</h1>
       <p>This is a wonderful App
       </p>
        */}
-       <div className="flex-grow p-6 text-center">
-        <p>Welcome to Our App</p>
-       </div>
-  </div>
-  </div>
-  </div>
+          <div className="flex-grow p-6 text-center">
+            <p>Welcome to Our App</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
