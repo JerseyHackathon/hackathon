@@ -120,18 +120,14 @@ export default function Home() {
       <div className="w-full max-w-4xl mx-auto text-center justify-center">
         <div className="w-full mb-6">
         <div className="w-full h-auto overflow-hidden">
-          <motion.div
-          className="flex"
-          animate={{x:["0%","100%"]}}
-          transition={{
-            x:{repeat: Infinity,duration:10,ease:"linear"}
-          }}>
-          <img
-            src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGZvb2QlMjBraXRjaGVufGVufDB8fDB8fHww"
-            alt="food"
-            className="w-full h-auto"
-            />
-            </motion.div>
+        <div className="flex">
+  <img
+    src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGZvb2QlMjBraXRjaGVufGVufDB8fDB8fHww"
+    alt="food"
+    className="w-full h-auto"
+  />
+</div>
+
           </div>
 
           <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -148,7 +144,8 @@ export default function Home() {
               {/* Food Pantry Map Component */}
               <FoodPantryMap />
               <FoodListTable />
-             
+              
+             {/* Robot Icon */}
             <FontAwesomeIcon icon={faRobot} className="text-blue-500 w-10 h-10" />
 
 
