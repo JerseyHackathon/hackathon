@@ -32,22 +32,38 @@
 //     </html>
 //   );
 // }
+"use client";
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import "./globals.css";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-export default function RootLayout({
-  children,
-}: {
+type RootLayoutProps = {
   children: React.ReactNode;
-}) {
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  const pathname = usePathname(); 
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Navbar /> 
-        <main className="flex-grow">{children}</main>
-        <Footer/>
+      <body className="flex flex-col min-h-screen overflow-x-hidden">
+        {/* Ensure no horizontal scroll due to animation */}
+        <Navbar />
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={pathname} // Triggers animation on route change
+            initial={{ rotateY: 90, opacity: 0 }} // Start flipped
+            animate={{ rotateY: 0, opacity: 1 }} // Flip to the front
+            exit={{ rotateY: -90, opacity: 0 }} // Flip out to the back
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="flex-grow"
+          >
+            {children}
+          </motion.main>
+        </AnimatePresence>
+        <Footer />
       </body>
     </html>
   );
