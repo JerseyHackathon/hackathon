@@ -5,7 +5,7 @@ import { FaHandsHelping, FaDonate, FaEnvelope } from "react-icons/fa";
 
 const Donate = () => {
   return (
-    <div className="flex flex-col items-center p-8 bg-gradient-to-r from-blue-500 to-green-500 text-white">
+    <div className="flex flex-col items-center p-8 bg-white text-gray-900 min-h-screen">
       <motion.h1
         className="text-3xl font-bold mb-4"
         initial={{ opacity: 0 }}
