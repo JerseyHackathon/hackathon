@@ -1,4 +1,4 @@
-"use client"; // Forces this component to run on the client
+"use client"; // Ensures this component runs only on the client
 
 import React, { useState, useEffect } from "react";
 import {
@@ -10,27 +10,40 @@ import {
 
 const libraries: ("places")[] = ["places"];
 const apiKey = `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
+
 interface Location {
   lat: number;
   lng: number;
 }
 
 interface Pantry {
+  place_id: string;
   name: string;
-  vicinity?: string; // Address (if available)
+  vicinity?: string;
   geometry: { location: { lat: () => number; lng: () => number } };
+}
+
+interface PantryDetails extends Pantry {
+  formatted_address?: string;
+  formatted_phone_number?: string;
+  website?: string;
+  opening_hours?: { weekday_text: string[] };
 }
 
 const FoodPantryMap: React.FC = () => {
   const { isLoaded } = useLoadScript({ googleMapsApiKey: apiKey, libraries });
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [location, setLocation] = useState<Location>({ lat: 40.7128, lng: -74.006 }); // Default: NYC
+  const [location, setLocation] = useState<Location>({ lat: 39.9425, lng: -75.1165 }); // Camden, NJ
   const [pantries, setPantries] = useState<Pantry[]>([]);
   const [zipCode, setZipCode] = useState<string>("");
-  const [selectedPantry, setSelectedPantry] = useState<Pantry | null>(null);
+  const [selectedPantry, setSelectedPantry] = useState<PantryDetails | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
-  // Convert ZIP code to coordinates using Google Geocoding API
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleZipCodeSearch = async () => {
     if (!zipCode) return alert("Please enter a ZIP code");
 
@@ -53,14 +66,13 @@ const FoodPantryMap: React.FC = () => {
     }
   };
 
-  // Search for nearby food pantries using Google Places API
   const searchNearbyPantries = (center: Location) => {
     if (!map) return;
     const service = new window.google.maps.places.PlacesService(map);
     const request: google.maps.places.PlaceSearchRequest = {
       location: center,
-      radius: 8000, // 8 km (~5 miles)
-      keyword: "food pantry",
+      radius: 5000,
+      keyword: "food banks",
     };
 
     service.nearbySearch(request, (results, status) => {
@@ -70,13 +82,48 @@ const FoodPantryMap: React.FC = () => {
     });
   };
 
+  const fetchPantryDetails = (placeId: string) => {
+    if (!map) return;
+    const service = new window.google.maps.places.PlacesService(map);
+
+    const request: google.maps.places.PlaceDetailsRequest = {
+      placeId,
+      fields: [
+        "name",
+        "formatted_address",
+        "formatted_phone_number",
+        "website",
+        "opening_hours",
+        "geometry",
+      ],
+    };
+
+    service.getDetails(request, (place, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
+        setSelectedPantry({
+          ...place,
+          place_id: placeId,
+          name: place.name || "Unknown Name",
+          vicinity: place.formatted_address || "Address not available",
+          geometry: {
+            location: {
+              lat: () => place.geometry?.location?.lat() || 0,
+              lng: () => place.geometry?.location?.lng() || 0,
+            },
+          },
+          opening_hours: place.opening_hours ?? { weekday_text: ["No opening hours available"] }, // 👈 Ensure a fallback
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     if (map) {
       searchNearbyPantries(location);
     }
-  }, [map]);
+  }, [map, location]);
 
-  if (!isLoaded) return <div style={{ color: "black" }}>Loading...</div>;
+  if (!isClient || !isLoaded) return <div style={{ color: "black" }}>Loading...</div>;
 
   return (
     <div style={{ color: "black" }}>
@@ -98,52 +145,68 @@ const FoodPantryMap: React.FC = () => {
       </div>
 
       {/* Google Map */}
-      <GoogleMap
-        center={location}
-        zoom={12}
-        mapContainerStyle={{ height: "500px", width: "100%" }}
-        onLoad={(map) => setMap(map)}
-      >
-        {/* Food Pantry Markers */}
-        {pantries.map((pantry, index) => (
-          <Marker
-            key={index}
-            position={{
-              lat: pantry.geometry.location.lat(),
-              lng: pantry.geometry.location.lng(),
-            }}
-            onClick={() => setSelectedPantry(pantry)}
-          />
-        ))}
-
-        {/* Info Window (Displays when a marker is clicked) */}
-        {selectedPantry && (
-          <InfoWindow
-            position={{
-              lat: selectedPantry.geometry.location.lat(),
-              lng: selectedPantry.geometry.location.lng(),
-            }}
-            onCloseClick={() => setSelectedPantry(null)}
+      {isClient && (
+        <div style={{ height: "500px", width: "100%" }}>
+          <GoogleMap
+            center={location}
+            zoom={12}
+            mapContainerStyle={{ height: "100%", width: "100%" }}
+            onLoad={(map) => setMap(map)}
           >
-            <div style={{ color: "black" }}>
-              <h2>{selectedPantry.name}</h2>
-              <p>{selectedPantry.vicinity || "Address not available"}</p>
-            </div>
-          </InfoWindow>
-        )}
-      </GoogleMap>
+            {/* Food Pantry Markers */}
+            {pantries.map((pantry, index) => (
+              <Marker
+                key={index}
+                position={{
+                  lat: pantry.geometry.location.lat(),
+                  lng: pantry.geometry.location.lng(),
+                }}
+                onClick={() => fetchPantryDetails(pantry.place_id)}
+              />
+            ))}
+
+            {/* Info Window with Details */}
+            {selectedPantry && (
+              <InfoWindow
+                position={{
+                  lat: selectedPantry.geometry.location.lat(),
+                  lng: selectedPantry.geometry.location.lng(),
+                }}
+                onCloseClick={() => setSelectedPantry(null)}
+              >
+                <div style={{ color: "black" }}>
+                  <h2>{selectedPantry.name}</h2>
+                  <p><strong>Address:</strong> {selectedPantry.formatted_address || "Not available"}</p>
+                  <p><strong>Phone:</strong> {selectedPantry.formatted_phone_number || "Not available"}</p>
+                  {selectedPantry.website && (
+                    <p>
+                      <strong>Website:</strong>{" "}
+                      <a href={selectedPantry.website} target="_blank" rel="noopener noreferrer">
+                        Visit Site
+                      </a>
+                    </p>
+                  )}
+                  {selectedPantry.opening_hours ? (
+                    <div>
+                      <strong>Opening Hours:</strong>
+                      <ul>
+                        {selectedPantry.opening_hours.weekday_text.map((hour, idx) => (
+                          <li key={idx}>{hour}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <p>Opening hours not available</p>
+                  )}
+                </div>
+              </InfoWindow>
+            )}
+          </GoogleMap>
+        </div>
+      )}
 
       {/* List of Food Pantries */}
-      <div
-        style={{
-          marginTop: "20px",
-          maxHeight: "300px",
-          overflowY: "auto",
-          border: "1px solid #ddd",
-          padding: "10px",
-          color: "black",
-        }}
-      >
+      <div style={{ marginTop: "20px", maxHeight: "300px", overflowY: "auto", border: "1px solid #ddd", padding: "10px", color: "black" }}>
         <h3>Nearby Food Pantries</h3>
         {pantries.length === 0 ? (
           <p>No food pantries found.</p>
@@ -152,12 +215,12 @@ const FoodPantryMap: React.FC = () => {
             {pantries.map((pantry, index) => (
               <li
                 key={index}
-                onClick={() => setSelectedPantry(pantry)}
+                onClick={() => fetchPantryDetails(pantry.place_id)}
                 style={{
                   cursor: "pointer",
                   padding: "10px",
                   borderBottom: "1px solid #ddd",
-                  backgroundColor: selectedPantry === pantry ? "#f0f0f0" : "white",
+                  backgroundColor: selectedPantry?.place_id === pantry.place_id ? "#f0f0f0" : "white",
                   color: "black",
                 }}
               >
@@ -174,8 +237,3 @@ const FoodPantryMap: React.FC = () => {
 };
 
 export default FoodPantryMap;
-
-
-
-
-
