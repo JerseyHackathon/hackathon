@@ -29,8 +29,10 @@ interface PantryDetails extends Pantry {
   website?: string;
   opening_hours?: { weekday_text: string[] };
 }
-
-const FoodPantryMap: React.FC = () => {
+interface FoodPantryMapProps {
+  setSelectedPantryName: (name: string | null) => void;
+}
+const FoodPantryMap: React.FC<FoodPantryMapProps> = ({ setSelectedPantryName }) => {
   const { isLoaded } = useLoadScript({ googleMapsApiKey: apiKey, libraries });
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
@@ -112,7 +114,10 @@ const FoodPantryMap: React.FC = () => {
             },
           },
           opening_hours: place.opening_hours ?? { weekday_text: ["No opening hours available"] }, // 👈 Ensure a fallback
+           
         });
+        setSelectedPantryName(place.name);
+        
       }
     });
   };
@@ -175,7 +180,8 @@ const FoodPantryMap: React.FC = () => {
                 onCloseClick={() => setSelectedPantry(null)}
               >
                 <div style={{ color: "black" }}>
-                  <h2>{selectedPantry.name}</h2>
+                
+                  <h1>{selectedPantry.name}</h1>
                   <p><strong>Address:</strong> {selectedPantry.formatted_address || "Not available"}</p>
                   <p><strong>Phone:</strong> {selectedPantry.formatted_phone_number || "Not available"}</p>
                   {selectedPantry.website && (
@@ -237,3 +243,4 @@ const FoodPantryMap: React.FC = () => {
 };
 
 export default FoodPantryMap;
+
