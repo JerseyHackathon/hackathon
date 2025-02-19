@@ -104,10 +104,10 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   };
 
   return (
-    <Container sx={{ marginTop: 15 }}>
+    <Container sx={{}}>
       <Typography
         variant="h4"
-        sx={{ marginBottom: 10, color: "#008CBA", fontWeight: "bold" }}
+        sx={{ marginBottom: 5, color: "#008CBA", fontWeight: "bold" }}
       >
         Food Available for Pickup
       </Typography>
