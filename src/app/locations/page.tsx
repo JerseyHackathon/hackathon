@@ -37,12 +37,12 @@ export default function Locations() {
         </div>
       </div>
       {/* Image Section */}
-      <div className="bg-white bg-opacity-80 p-16 flex flex-row gap-12 w-[1200px] h-[478px] relative">
+      <div className="bg-white bg-opacity-80 p-16 flex flex-row gap-12 w-[700px] h-[478px] relative">
         <FontAwesomeIcon icon={faRobot} className="text-blue-500 w-10 h-10" />
         
         
                       <DeepChat
-                        style={{ borderRadius: "20px", width: "1000px" }}
+                        style={{ borderRadius: "20px", width: "500px" }}
                         textInput={{ placeholder: { text: "What is in your pantry?" } }}
                         directConnection={{
                           openAI: {
@@ -56,13 +56,13 @@ export default function Locations() {
                         }}
                       />
                     </div>
-        <Image
+        {/* <Image
           className="flex-1 object-cover"
           src="/image1.png"
           alt="Image 1"
           width={600}
           height={478}
-        />
+        /> */}
       </div>
     
   );
