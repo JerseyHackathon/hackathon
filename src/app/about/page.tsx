@@ -28,8 +28,7 @@ const AboutUs = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
         >
-          Imagine a world where you never have to wonder what to cook or where to
-          find ingredients.
+          Imagine a world where you never have to wonder what to cook with available ingredients.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -104,7 +103,7 @@ const AboutUs = () => {
         transition={{ delay: 4, duration: 1 }}
         className="mt-8 text-lg text-center"
       >
-        With PantryPal, cooking becomes stress-free, budget-friendly, and more
+        With PantryPal, cooking becomes stress-free and more
         connected to your community. Whether you're looking to reduce food waste,
         explore new recipes, or simply make meal planning easier, our app has you
         covered!

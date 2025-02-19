@@ -50,7 +50,7 @@ const Contact = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          <FaMapMarkerAlt className="mr-3 text-2xl" /> <span>123 Main Street, Hometown</span>
+          <FaMapMarkerAlt className="mr-3 text-2xl" /> <span>123 Street, Hometown</span>
         </motion.p>
       </motion.div>
 
