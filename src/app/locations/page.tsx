@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FoodPantryMap from "../map"; 
 import FoodListTable from "../FoodListTable";
+import { DeepChat } from "deep-chat-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRobot } from "@fortawesome/free-solid-svg-icons";
 //push up to here 
 //I can send it down to food list table as prop
 //then I can render based on the prop
@@ -35,13 +38,24 @@ export default function Locations() {
       </div>
       {/* Image Section */}
       <div className="bg-white bg-opacity-80 p-16 flex flex-row gap-12 w-[1200px] h-[478px] relative">
-        <Image
-          className="flex-1 object-cover"
-          src="/image0.png"
-          alt="Image 0"
-          width={600}
-          height={478}
-        />
+        <FontAwesomeIcon icon={faRobot} className="text-blue-500 w-10 h-10" />
+        
+        
+                      <DeepChat
+                        style={{ borderRadius: "20px", width: "1000px" }}
+                        textInput={{ placeholder: { text: "What is in your pantry?" } }}
+                        directConnection={{
+                          openAI: {
+                            key: `${process.env.NEXT_PUBLIC_openAIKey}`,
+                            chat: {
+                              max_tokens: 2000,
+                              system_prompt:
+                                "Given these food items give me some healthy dishes i can make with them and then assist me with anything i can. Be as concise as possible",
+                            },
+                          },
+                        }}
+                      />
+                    </div>
         <Image
           className="flex-1 object-cover"
           src="/image1.png"
@@ -50,6 +64,6 @@ export default function Locations() {
           height={478}
         />
       </div>
-    </div>
+    
   );
 }
