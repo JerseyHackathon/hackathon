@@ -5,6 +5,7 @@ import { FaSearch, FaRobot, FaCalendarCheck } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
+    <div style={{ backgroundImage: `('\image3.png')`,backgroundSize: 'cover' , height: '100vh'}}>
     <div className="flex flex-col items-center p-8 bgbg-white text-gray-900 min-h-screen">
      
       <motion.h1
@@ -108,6 +109,7 @@ const AboutUs = () => {
         explore new recipes, or simply make meal planning easier, our app has you
         covered!
       </motion.p>
+    </div>
     </div>
   );
 };
