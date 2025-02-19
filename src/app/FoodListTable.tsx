@@ -9,8 +9,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Container, TextField, Typography } from "@mui/material";
+import { Button, Container, TextField, Typography } from "@mui/material";
 import MenuDropDown from "./MenuDropDown";
+import axios from 'axios'
+
 
 const mockData = [
   { distribution_date: "2/20/25", food_type: "CANNED VEGETABLES", quantity: "2", food_name: "Green Beans", calories: "34" },
@@ -38,7 +40,53 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   const [filterQuery, setFilterQuery] = useState("");
   const [filteredRows, setFilteredRows] = useState(getRandomItems(mockData, 5));
   const [column, setColumn] = useState("distribution_date");
+  const [aiTableClicked, setAiTableClicked] = useState(false)
+  const [aiChef, setAiChef] = useState([{}])
 
+  const generateText = () => {
+    console.log("inseide generate text ")
+    // const mainInputElement = document.getElementById('main-input-element');
+    // const inputText = mainInputElement ? mainInputElement.value : '';
+    const foodNames = filteredRows.map(ele=>ele.food_name)
+    if(!filteredRows){
+      alert("Food cannot be empty for an AI response.")
+    } else{
+    axios.post('https://api.openai.com/v1/chat/completions',
+        {
+            "model": "gpt-3.5-turbo",
+
+           "messages": [
+              {
+                "role": "user",
+
+                "content": `Return to me multiple popular western meals you can make with these ingredients: ${foodNames}: return in an array of objects like this: [{"food": "place meal here"},]`
+              }
+            ],
+              "max_tokens": 1000
+          }, {
+      headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_openAIKey}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      const gptResponse = response.data.choices[0].message.content
+      console.log("ai chef recomends: ", gptResponse)
+      setAiChef(JSON.parse(gptResponse))
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+  };
+
+  const handleAIchefClick = () => {
+    setAiTableClicked(!aiTableClicked)
+    if(!aiTableClicked){
+      generateText()
+    }
+    
+  }
   useEffect(() => {
     if (selectedPantryName) {
       setFilteredRows(getRandomItems(mockData, 5));
@@ -122,6 +170,34 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
           </TableBody>
         </Table>
       </TableContainer>
+      <Button onClick={handleAIchefClick} sx={{margin: "50px"}} variant="outlined">Explore AI chef meals</Button>
+
+
+
+     { aiTableClicked ?  <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Meals
+              </TableCell>
+       
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {aiChef.map((row, count) => (
+              <TableRow
+                key={count}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{row.food}</TableCell>
+         
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer> : ""
+}
     </Container>
   );
 };
