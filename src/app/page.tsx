@@ -1,6 +1,7 @@
 "use client";
 
 // import dynamic from "next/dynamic";
+import{motion} from "framer-motion";
 import FoodPantryMap from "./map";
 import FoodListTable from "./FoodListTable";
 
@@ -10,6 +11,8 @@ import Donate from "./Donate/page";
 import AboutUs from "./about/page";
 import Image from "next/image";
 import { DeepChat } from "deep-chat-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRobot } from "@fortawesome/free-solid-svg-icons";
 // //
 // // export default function Home() {
 // //   return (
@@ -112,16 +115,20 @@ import { DeepChat } from "deep-chat-react";
 // }
 export default function Home() {
   return (
+
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="w-full max-w-4x1 mx-auto text-center justify-center">
+      <div className="w-full max-w-4xl mx-auto text-center justify-center">
         <div className="w-full mb-6">
-          <img
-            src="https://images.unsplash.com/photo-1572424117831-005b5e9b3ae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lYWx8ZW58MHx8MHx8fDA%3D"
-            alt="food"
-            width={1200}
-            height={100}
-            className="w-full h-auto object-cover rounded-1g shadow-md"
-          />
+        <div className="w-full h-auto overflow-hidden">
+        <div className="flex">
+  <img
+    src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGZvb2QlMjBraXRjaGVufGVufDB8fDB8fHww"
+    alt="food"
+    className="w-full h-auto"
+  />
+</div>
+
+          </div>
 
           <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
             <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -137,6 +144,11 @@ export default function Home() {
               {/* Food Pantry Map Component */}
               <FoodPantryMap />
               <FoodListTable />
+              
+             {/* Robot Icon */}
+            <FontAwesomeIcon icon={faRobot} className="text-blue-500 w-10 h-10" />
+
+
               <DeepChat
                 style={{ borderRadius: "20px", width: "1000px" }}
                 textInput={{ placeholder: { text: "What is in your pantry?" } }}
