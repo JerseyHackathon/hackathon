@@ -4,14 +4,16 @@ import React, { useEffect, useState } from 'react'
 
 function Checkout() {
     const [data, setData] = useState([]);
-
+    const [pantry, setPantry] = useState('')
     useEffect(() => {
       // Retrieve the data from localStorage when the component mounts
       const storedData = localStorage.getItem('dataArray');
+      const pantryname = localStorage.getItem('pantryname');
       console.log(storedData)
+      console.log(pantryname)
       if (storedData) {
         setData(JSON.parse(storedData)); // Parse the data and update state
-        
+        setPantry(JSON.parse(pantryname))
       }
       
     }, []);
@@ -21,7 +23,7 @@ function Checkout() {
         variant="h4"
         sx={{ marginBottom: 5, color: "#008CBA", fontWeight: "bold" }}
       >
-        Your Food Reservation is confirmed.
+        Your Food Reservation is confirmed.<br></br> Please pick up at: {pantry}
       </Typography>
           <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

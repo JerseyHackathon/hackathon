@@ -12,7 +12,6 @@ import Paper from "@mui/material/Paper";
 import { Button, Container, TextField, Typography } from "@mui/material";
 import MenuDropDown from "./MenuDropDown";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -65,6 +64,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   useEffect(()=>{
     if (typeof window !== 'undefined') {
       localStorage.setItem('dataArray', JSON.stringify(reservedItems));
+      localStorage.setItem('pantryname', JSON.stringify(selectedPantryName));
     }
   }, [reservedItems])
   const generateText = () => {
