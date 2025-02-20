@@ -20,7 +20,7 @@ const Footer = () => {
                       <h2 className="text-1g font-bold mb-4"><Link href="/contact" className="hover:underline">Contact Us</Link>
                       </h2>
                       <p>+1234567890</p>
-                      <p>pantrypal@gmail.com</p>
+                      <p>pantrypal@example.com</p>
            </div>
                        <h2 className="text-lg font-bold">Follow Us</h2>
                        <p></p>
