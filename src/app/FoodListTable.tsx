@@ -12,6 +12,8 @@ import Paper from "@mui/material/Paper";
 import { Button, Container, TextField, Typography } from "@mui/material";
 import MenuDropDown from "./MenuDropDown";
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
 
 
 const mockData = [
@@ -43,6 +45,11 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   const [aiTableClicked, setAiTableClicked] = useState(false)
   const [aiChef, setAiChef] = useState([{}])
   const [reservedItems, setReservedItems]=useState([])
+// const navigate = useNavigate()
+//   const navigateToDetails = () => {
+//    // const dataToSend = { message: reservedItems};
+//     navigate('/checkout', { state: { data: reservedItems } });
+//   };
 
   const handleReserveClick = (item)=>{
    console.log("user clicked: ", item)
@@ -51,8 +58,15 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
 
     item.reserved = true;
     console.log("reserved items: ", reservedItems)
+    
   }
   }
+
+  useEffect(()=>{
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dataArray', JSON.stringify(reservedItems));
+    }
+  }, [reservedItems])
   const generateText = () => {
     console.log("inseide generate text ")
     // const mainInputElement = document.getElementById('main-input-element');
@@ -187,7 +201,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
         </Table>
       </TableContainer>
       <Button onClick={handleAIchefClick} sx={{margin: "50px"}} variant="outlined">Explore AI chef meals</Button>
-            <Button variant="outlined">Checkout</Button>
+            <Button variant="outlined" href="/checkout">Checkout</Button>
 
 
      { aiTableClicked ?  <TableContainer component={Paper}>
