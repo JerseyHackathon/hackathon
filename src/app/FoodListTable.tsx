@@ -15,16 +15,16 @@ import axios from 'axios'
 
 
 const mockData = [
-  { distribution_date: "2/20/25", food_type: "CANNED VEGETABLES", quantity: "2", food_name: "Green Beans", calories: "34" },
-  { distribution_date: "2/21/25", food_type: "CANNED FRUITS", quantity: "1", food_name: "Peaches", calories: "50" },
-  { distribution_date: "2/22/25", food_type: "HOT AND COLD CEREALS", quantity: "3", food_name: "Oatmeal", calories: "150" },
-  { distribution_date: "2/23/25", food_type: "RICE/PASTA", quantity: "1", food_name: "Spaghetti", calories: "200" },
-  { distribution_date: "2/24/25", food_type: "CANNED MEATS", quantity: "4", food_name: "Chicken Breast", calories: "210" },
-  { distribution_date: "2/25/25", food_type: "CANNED VEGETABLES", quantity: "2", food_name: "Corn", calories: "120" },
-  { distribution_date: "2/26/25", food_type: "CANNED FRUITS", quantity: "3", food_name: "Pineapple", calories: "90" },
-  { distribution_date: "2/27/25", food_type: "HOT AND COLD CEREALS", quantity: "2", food_name: "Corn Flakes", calories: "100" },
-  { distribution_date: "2/28/25", food_type: "RICE/PASTA", quantity: "1", food_name: "Brown Rice", calories: "215" },
-  { distribution_date: "3/1/25", food_type: "CANNED MEATS", quantity: "5", food_name: "Salmon", calories: "250" }
+  { distribution_date: "2/20/25", food_type: "CANNED VEGETABLES", quantity: "2", food_name: "Green Beans", calories: "34", reserved: false },
+  { distribution_date: "2/21/25", food_type: "CANNED FRUITS", quantity: "1", food_name: "Peaches", calories: "50", reserved: false  },
+  { distribution_date: "2/22/25", food_type: "HOT AND COLD CEREALS", quantity: "3", food_name: "Oatmeal", calories: "150", reserved: false  },
+  { distribution_date: "2/23/25", food_type: "RICE/PASTA", quantity: "1", food_name: "Spaghetti", calories: "200", reserved: false  },
+  { distribution_date: "2/24/25", food_type: "CANNED MEATS", quantity: "4", food_name: "Chicken Breast", calories: "210", reserved: false  },
+  { distribution_date: "2/25/25", food_type: "CANNED VEGETABLES", quantity: "2", food_name: "Corn", calories: "120", reserved: false  },
+  { distribution_date: "2/26/25", food_type: "CANNED FRUITS", quantity: "3", food_name: "Pineapple", calories: "90", reserved: false  },
+  { distribution_date: "2/27/25", food_type: "HOT AND COLD CEREALS", quantity: "2", food_name: "Corn Flakes", calories: "100", reserved: false  },
+  { distribution_date: "2/28/25", food_type: "RICE/PASTA", quantity: "1", food_name: "Brown Rice", calories: "215", reserved: false  },
+  { distribution_date: "3/1/25", food_type: "CANNED MEATS", quantity: "5", food_name: "Salmon", calories: "250", reserved: false  }
 ];
 
 function getRandomItems(array, numItems) {
@@ -42,7 +42,17 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   const [column, setColumn] = useState("distribution_date");
   const [aiTableClicked, setAiTableClicked] = useState(false)
   const [aiChef, setAiChef] = useState([{}])
+  const [reservedItems, setReservedItems]=useState([])
 
+  const handleReserveClick = (item)=>{
+   console.log("user clicked: ", item)
+   if (!item.reserved) {
+    setReservedItems((prev) => [...prev, item]);
+
+    item.reserved = true;
+    console.log("reserved items: ", reservedItems)
+  }
+  }
   const generateText = () => {
     console.log("inseide generate text ")
     // const mainInputElement = document.getElementById('main-input-element');
@@ -152,6 +162,9 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
               <TableCell style={{ fontWeight: "bold" }} align="center">
                 Calories [per unit]
               </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Reserve
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -165,13 +178,16 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
                 <TableCell align="center">{row.quantity}</TableCell>
                 <TableCell align="center">{row.food_name}</TableCell>
                 <TableCell align="center">{row.calories}</TableCell>
+                <TableCell align="center"> <Button  onClick={() => handleReserveClick(row)}
+                disabled={row.reserved} variant="text">Add Item</Button></TableCell>
+
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
       <Button onClick={handleAIchefClick} sx={{margin: "50px"}} variant="outlined">Explore AI chef meals</Button>
-
+            <Button variant="outlined">Checkout</Button>
 
 
      { aiTableClicked ?  <TableContainer component={Paper}>
