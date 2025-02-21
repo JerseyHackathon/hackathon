@@ -181,7 +181,7 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({ setSelectedPantryName }) 
               >
                 <div style={{ color: "black" }}>
                 
-                  <h1>{selectedPantry.name}</h1>
+                  <h2>{selectedPantry.name}</h2>
                   <p><strong>Address:</strong> {selectedPantry.formatted_address || "Not available"}</p>
                   <p><strong>Phone:</strong> {selectedPantry.formatted_phone_number || "Not available"}</p>
                   {selectedPantry.website && (
@@ -212,7 +212,7 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({ setSelectedPantryName }) 
       )}
 
       {/* List of Food Pantries */}
-      <div style={{ marginTop: "20px", maxHeight: "300px", overflowY: "auto", border: "1px solid #ddd", padding: "10px", color: "black" }}>
+      <div style={{ marginTop: "20px", maxHeight: "530px", overflowY: "auto", border: "1px solid #ddd", padding: "10px", color: "black" }}>
         <h3>Nearby Food Pantries</h3>
         {pantries.length === 0 ? (
           <p>No food pantries found.</p>
