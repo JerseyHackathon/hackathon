@@ -43,13 +43,14 @@ const Donate = () => {
         </motion.p>
 
         <motion.button
+          
           className="flex items-center bg-blue-500 text-white py-2 px-6 rounded-lg text-lg font-semibold hover:bg-green-600 transition"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
-          <FaDonate className="mr-2" /> Donate Now
+          <FaDonate className="mr-2" /> <a href="https://buy.stripe.com/test_4gw15ras60f8byUaEE">Donate Now</a> 
         </motion.button>
 
         <motion.h2
