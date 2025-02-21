@@ -1,7 +1,6 @@
 "use client";
 
-
-import{motion} from "framer-motion";
+import { motion } from "framer-motion";
 import FoodPantryMap from "./map";
 import FoodListTable from "./FoodListTable";
 
@@ -15,10 +14,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 
-
 const Home = () => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900">
+    <div
+      className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900"
+      data-theme="lemonade"
+    >
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] bg-gray-900">
         <img
@@ -41,8 +42,9 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            Connecting Communities, Ending Hunger   
-            PantryPal connects people to local food banks. Together, we can end hunger—one meal at a time because no one should go hungry.
+            Connecting Communities, Ending Hunger PantryPal connects people to
+            local food banks. Together, we can end hunger—one meal at a time
+            because no one should go hungry.
           </motion.p>
         </div>
       </div>
@@ -63,10 +65,10 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
         >
-          Easy Access to Food Banks – A digital platform where users can find nearby food banks.
-Efficient Donations – Connects donors (restaurants, grocery stores, individuals) with organizations that can redistribute surplus food.
-
-
+          Easy Access to Food Banks – A digital platform where users can find
+          nearby food banks. Efficient Donations – Connects donors (restaurants,
+          grocery stores, individuals) with organizations that can redistribute
+          surplus food.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -95,4 +97,3 @@ Efficient Donations – Connects donors (restaurants, grocery stores, individual
 };
 
 export default Home;
-
