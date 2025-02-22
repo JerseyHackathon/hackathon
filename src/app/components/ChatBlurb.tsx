@@ -40,9 +40,9 @@ const ChatBlurb = () => {
 
       <button
         onClick={toggleChat}
-        className="fixed bottom-5 right-5 bg-blue-600 rounded-full shadow-lg z-10 btn-sm"
+        className="fixed bottom-5 right-5 rounded-full shadow-lg z-10 btn-lg btn-outline bg-lime-300 hover:bg-orange-400 hover:outline hover:outline-cyan-300"
       >
-        <FaRobot />
+        <FaRobot className="w-9 h-7" />
       </button>
     </div>
   );
