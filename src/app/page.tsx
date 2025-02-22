@@ -17,7 +17,7 @@ import { FaGooglePlay, FaApple } from "react-icons/fa";
 const Home = () => {
   return (
     <div
-      className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900"
+      className="flex flex-col items-center min-h-screen text-gray-900"
       data-theme="lemonade"
     >
       {/* Hero Section */}
