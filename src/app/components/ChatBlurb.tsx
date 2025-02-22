@@ -16,7 +16,7 @@ const ChatBlurb = () => {
           className="overflow-y-auto shadow-lg rounded-md"
           style={{
             position: "fixed",
-            bottom: "70px",
+            bottom: "90px",
             right: "20px",
             width: "400px",
             height: "600px",
