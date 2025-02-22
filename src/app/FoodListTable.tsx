@@ -284,7 +284,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
                     disabled={row.reserved}
                     variant="text"
                   >
-                    Add Item
+                    Add
                   </Button>
                 </TableCell>
               </TableRow>
@@ -292,16 +292,18 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
           </TableBody>
         </Table>
       </TableContainer>
+      <div style={{display: "flex", justifyContent: "flex-end", gap:"10px", paddingTop: "20px" }}>
       <Button
         onClick={handleAIchefClick}
-        sx={{ margin: "50px" }}
-        variant="outlined"
+        variant="contained"
+        color="primary"
       >
         Explore AI chef meals
       </Button>
-      <Button variant="outlined" href="/checkout">
+      <Button color="primary" variant="contained" href="/checkout">
         Checkout
       </Button>
+      </div>
   
       {aiTableClicked ? (
         <TableContainer component={Paper}>
