@@ -1,74 +1,124 @@
-"use client"
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+"use client";
+
+import { 
+  Container, 
+  Paper, 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TableRow, 
+  Typography 
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 function Checkout() {
-    const [data, setData] = useState([]);
-    const [pantry, setPantry] = useState('')
-    useEffect(() => {
-      // Retrieve the data from localStorage when the component mounts
-      const storedData = localStorage.getItem('dataArray');
-      const pantryname = localStorage.getItem('pantryname');
-      console.log(storedData)
-      console.log(pantryname)
-      if (storedData) {
-        setData(JSON.parse(storedData)); // Parse the data and update state
-        setPantry(JSON.parse(pantryname))
-      }
-      
-    }, []);
+  const [data, setData] = useState([]);
+  const [pantry, setPantry] = useState("");
+
+  useEffect(() => {
+    // Retrieve the data from localStorage when the component mounts
+    const storedData = localStorage.getItem("dataArray");
+    const pantryname = localStorage.getItem("pantryname");
+
+    if (storedData) {
+      setData(JSON.parse(storedData)); // Parse the data and update state
+      setPantry(JSON.parse(pantryname));
+    }
+  }, []);
+
   return (
-    <Container>
-          <Typography
-        variant="h4"
-        sx={{ marginBottom: 5, color: "#008CBA", fontWeight: "bold" }}
+    <div
+      className="relative min-h-screen bg-cover bg-center flex items-center justify-center"
+      style={{ backgroundImage: "url('/foodincart.webp')" }}
+    >
+      {/* Overlay for better readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <Container 
+        maxWidth="md" 
+        sx={{ 
+          position: "relative", // Ensures it stays above the overlay
+          py: 6, 
+          zIndex: 10 
+        }}
       >
-        Your Food Reservation is confirmed.<br></br> Please pick up at: {pantry}
-      </Typography>
-          <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Distribution Date
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Food Type
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Quantity[per person]
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Food Name
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Calories [per unit]
-              </TableCell>
-             
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, count) => (
-              <TableRow
-                key={count}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">{row.distribution_date}</TableCell>
-                <TableCell align="center">{row.food_type}</TableCell>
-                <TableCell align="center">{row.quantity}</TableCell>
-                <TableCell align="center">{row.food_name}</TableCell>
-                <TableCell align="center">{row.calories}</TableCell>
-                {/* <TableCell align="center"> <Button  onClick={() => handleReserveClick(row)}
-                disabled={row.reserved} variant="text">Add Item</Button></TableCell> */}
+        {/* Header Message */}
+        <Paper
+          elevation={3}
+          sx={{
+            padding: 4,
+            textAlign: "center",
+            backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white
+            borderRadius: "12px",
+          }}
+        >
+          <Typography 
+            variant="h4" 
+            sx={{ color: "#008CBA", fontWeight: "bold", mb: 2 }}
+          >
+            
+            Your Food Reservation is Confirmed!
 
+          </Typography>
+          <Typography variant="h6" sx={{ color: "#333" }}>
+            Please pick up at: <strong>{pantry}</strong>
+          </Typography>
+        </Paper>
+
+        {/* Table with Food Details */}
+        <TableContainer 
+          component={Paper} 
+          sx={{ 
+            mt: 4, 
+            borderRadius: "12px", 
+            overflow: "hidden", 
+            boxShadow: 3,
+            backgroundColor: "rgba(255, 255, 255, 0.95)" // Slightly transparent white
+          }}
+        >
+          <Table sx={{ minWidth: 650 }}>
+            <TableHead sx={{ backgroundColor: "#008CBA" }}>
+              <TableRow>
+                {["Distribution Date", "Food Type", "Quantity [per person]", "Food Name", "Calories [per unit]"].map(
+                  (header, index) => (
+                    <TableCell 
+                      key={index} 
+                      align="center" 
+                      sx={{ fontWeight: "bold", color: "white", py: 2 }}
+                    >
+                      {header}
+                    </TableCell>
+                  )
+                )}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-    </Container>
-  )
+            </TableHead>
+            <TableBody>
+              {data.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} align="center" sx={{ py: 4, color: "#777" }}>
+                    No reservation details available.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                data.map((row, count) => (
+                  <TableRow key={count} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell align="center">{row.distribution_date}</TableCell>
+                    <TableCell align="center">{row.food_type}</TableCell>
+                    <TableCell align="center">{row.quantity}</TableCell>
+                    <TableCell align="center">{row.food_name}</TableCell>
+                    <TableCell align="center">{row.calories}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+    </div>
+  );
 }
 
-export default Checkout
+export default Checkout;
+
