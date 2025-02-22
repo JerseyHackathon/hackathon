@@ -1,301 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vars.css">
-  <link rel="stylesheet" href="./style.css">
-  
-  
-  <style>
-   a,
-   button,
-   input,
-   select,
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   * {
-       box-sizing: border-box;
-       margin: 0;
-       padding: 0;
-       border: none;
-       text-decoration: none;
-       background: none;
-   
-       -webkit-font-smoothing: antialiased;
-   }
-   
-   menu, ol, ul {
-       list-style-type: none;
-       margin: 0;
-       padding: 0;
-   }
-   </style>
-  <title>Document</title>
-</head>
-<body>
-  <div
-    style="
-      background: var(--var-sds-color-background-default-default, #ffffff);
-      display: flex;
-      flex-direction: column;
-      gap: 0px;
-      align-items: flex-start;
-      justify-content: flex-start;
-      position: relative;
-      overflow: hidden;
-    "
-  >
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./vars.css" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
     <div
       style="
+        background: var(--var-sds-color-background-default-default, #ffffff);
         display: flex;
         flex-direction: column;
         gap: 0px;
         align-items: flex-start;
         justify-content: flex-start;
-        flex-shrink: 0;
-        width: 1200px;
-        height: 577px;
         position: relative;
+        overflow: hidden;
       "
     >
       <div
         style="
-          background: linear-gradient(
-            to left,
-            rgba(255, 255, 255, 0.8),
-            rgba(255, 255, 255, 0.8)
-          );
-          padding: var(--var-sds-size-space-4000, 160px)
-            var(--var-sds-size-space-600, 24px)
-            var(--var-sds-size-space-4000, 160px)
-            var(--var-sds-size-space-600, 24px);
           display: flex;
           flex-direction: column;
-          gap: var(--var-sds-size-space-800, 32px);
-          align-items: center;
-          justify-content: center;
-          align-self: stretch;
-          flex-shrink: 0;
-          position: relative;
-        "
-      >
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            gap: var(--var-sds-size-space-200, 8px);
-            align-items: center;
-            justify-content: flex-start;
-            flex-shrink: 0;
-            position: relative;
-          "
-        >
-          <div
-            style="
-              color: var(--var-sds-color-text-utilities-text-on-overlay, #0c0c0d);
-              text-align: center;
-              font-family: var(
-                --title-hero-font-family,
-                'Inter-Bold',
-                sans-serif
-              );
-              font-size: var(--title-hero-font-size, 72px);
-              line-height: var(--title-hero-line-height, 120%);
-              letter-spacing: var(--title-hero-letter-spacing, -0.03em);
-              font-weight: var(--title-hero-font-weight, 700);
-              position: relative;
-              align-self: stretch;
-            "
-          >
-            Find a pantry near you
-          </div>
-          <div
-            style="
-              color: var(--var-sds-color-text-utilities-text-on-overlay, #0c0c0d);
-              text-align: center;
-              font-family: var(
-                --subtitle-font-family,
-                'Inter-Regular',
-                sans-serif
-              );
-              font-size: var(--subtitle-font-size, 32px);
-              line-height: var(--subtitle-line-height, 120%);
-              font-weight: var(--subtitle-font-weight, 400);
-              position: relative;
-              align-self: stretch;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          ></div>
-        </div>
-        <div
-          style="
-            display: flex;
-            flex-direction: row;
-            gap: var(--var-sds-size-space-400, 16px);
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            position: relative;
-          "
-        >
-          <div
-            style="
-              background: var(
-                --var-sds-color-background-neutral-tertiary,
-                #e3e3e3
-              );
-              border-radius: var(--var-sds-size-radius-200, 8px);
-              border-style: solid;
-              border-color: var(
-                --var-sds-color-border-neutral-secondary,
-                #767676
-              );
-              border-width: 1px;
-              padding: var(--var-sds-size-space-300, 12px);
-              display: flex;
-              flex-direction: row;
-              gap: var(--var-sds-size-space-200, 8px);
-              align-items: center;
-              justify-content: center;
-              flex-shrink: 0;
-              position: relative;
-              overflow: hidden;
-            "
-          >
-            <div
-              style="
-                color: var(--var-sds-color-text-default-default, #1e1e1e);
-                text-align: left;
-                font-family: var(
-                  --single-line-body-base-font-family,
-                  'Inter-Regular',
-                  sans-serif
-                );
-                font-size: var(--single-line-body-base-font-size, 16px);
-                line-height: var(--single-line-body-base-line-height, 100%);
-                font-weight: var(--single-line-body-base-font-weight, 400);
-                position: relative;
-              "
-            >
-              Button
-            </div>
-          </div>
-          <div
-            style="
-              background: var(--var-sds-color-background-brand-default, #2c2c2c);
-              border-radius: var(--var-sds-size-radius-200, 8px);
-              border-style: solid;
-              border-color: var(--var-sds-color-border-brand-default, #2c2c2c);
-              border-width: 1px;
-              padding: var(--var-sds-size-space-300, 12px);
-              display: flex;
-              flex-direction: row;
-              gap: var(--var-sds-size-space-200, 8px);
-              align-items: center;
-              justify-content: center;
-              flex-shrink: 0;
-              position: relative;
-              overflow: hidden;
-            "
-          >
-            <div
-              style="
-                color: var(--var-sds-color-text-brand-on-brand, #f5f5f5);
-                text-align: left;
-                font-family: var(
-                  --single-line-body-base-font-family,
-                  'Inter-Regular',
-                  sans-serif
-                );
-                font-size: var(--single-line-body-base-font-size, 16px);
-                line-height: var(--single-line-body-base-line-height, 100%);
-                font-weight: var(--single-line-body-base-font-weight, 400);
-                position: relative;
-              "
-            >
-              Button
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        gap: 0px;
-        align-items: flex-start;
-        justify-content: flex-start;
-        flex-shrink: 0;
-        position: relative;
-      "
-    >
-      <div
-        style="
-          background: var(--var-sds-color-background-default-default, #ffffff);
-          opacity: 0.8;
-          padding: var(--var-sds-size-space-1600, 64px);
-          display: flex;
-          flex-direction: row;
-          gap: var(--var-sds-size-space-1200, 48px);
+          gap: 0px;
           align-items: flex-start;
           justify-content: flex-start;
           flex-shrink: 0;
-          width: var(--var-sds-responsive-device-width, 1200px);
-          height: 478px;
+          width: 1200px;
+          height: 577px;
           position: relative;
         "
       >
-        <img
-          class="image"
+        <div
           style="
-            background: var(
-              --image-placeholder,
-              linear-gradient(to left, #e3e3e3, #e3e3e3)
+            background: linear-gradient(
+              to left,
+              rgba(255, 255, 255, 0.8),
+              rgba(255, 255, 255, 0.8)
             );
+            padding: var(--var-sds-size-space-4000, 160px)
+              var(--var-sds-size-space-600, 24px)
+              var(--var-sds-size-space-4000, 160px)
+              var(--var-sds-size-space-600, 24px);
             display: flex;
             flex-direction: column;
-            gap: 0px;
+            gap: var(--var-sds-size-space-800, 32px);
             align-items: center;
             justify-content: center;
             align-self: stretch;
-            flex: 1;
+            flex-shrink: 0;
             position: relative;
-            overflow: hidden;
-            object-fit: cover;
           "
-          src="image0.png"
-        />
-        <img
-          class="image"
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: var(--var-sds-size-space-200, 8px);
+              align-items: center;
+              justify-content: flex-start;
+              flex-shrink: 0;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                color: var(
+                  --var-sds-color-text-utilities-text-on-overlay,
+                  #0c0c0d
+                );
+                text-align: center;
+                font-family: var(
+                  --title-hero-font-family,
+                  'Inter-Bold',
+                  sans-serif
+                );
+                font-size: var(--title-hero-font-size, 72px);
+                line-height: var(--title-hero-line-height, 120%);
+                letter-spacing: var(--title-hero-letter-spacing, -0.03em);
+                font-weight: var(--title-hero-font-weight, 700);
+                position: relative;
+                align-self: stretch;
+              "
+            >
+              Find a pantry near you
+            </div>
+            <div
+              style="
+                color: var(
+                  --var-sds-color-text-utilities-text-on-overlay,
+                  #0c0c0d
+                );
+                text-align: center;
+                font-family: var(
+                  --subtitle-font-family,
+                  'Inter-Regular',
+                  sans-serif
+                );
+                font-size: var(--subtitle-font-size, 32px);
+                line-height: var(--subtitle-line-height, 120%);
+                font-weight: var(--subtitle-font-weight, 400);
+                position: relative;
+                align-self: stretch;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            ></div>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              gap: var(--var-sds-size-space-400, 16px);
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                background: var(
+                  --var-sds-color-background-neutral-tertiary,
+                  #e3e3e3
+                );
+                border-radius: var(--var-sds-size-radius-200, 8px);
+                border-style: solid;
+                border-color: var(
+                  --var-sds-color-border-neutral-secondary,
+                  #767676
+                );
+                border-width: 1px;
+                padding: var(--var-sds-size-space-300, 12px);
+                display: flex;
+                flex-direction: row;
+                gap: var(--var-sds-size-space-200, 8px);
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  color: var(--var-sds-color-text-default-default, #1e1e1e);
+                  text-align: left;
+                  font-family: var(
+                    --single-line-body-base-font-family,
+                    'Inter-Regular',
+                    sans-serif
+                  );
+                  font-size: var(--single-line-body-base-font-size, 16px);
+                  line-height: var(--single-line-body-base-line-height, 100%);
+                  font-weight: var(--single-line-body-base-font-weight, 400);
+                  position: relative;
+                "
+              >
+                Button
+              </div>
+            </div>
+            <div
+              style="
+                background: var(
+                  --var-sds-color-background-brand-default,
+                  #2c2c2c
+                );
+                border-radius: var(--var-sds-size-radius-200, 8px);
+                border-style: solid;
+                border-color: var(
+                  --var-sds-color-border-brand-default,
+                  #2c2c2c
+                );
+                border-width: 1px;
+                padding: var(--var-sds-size-space-300, 12px);
+                display: flex;
+                flex-direction: row;
+                gap: var(--var-sds-size-space-200, 8px);
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  color: var(--var-sds-color-text-brand-on-brand, #f5f5f5);
+                  text-align: left;
+                  font-family: var(
+                    --single-line-body-base-font-family,
+                    'Inter-Regular',
+                    sans-serif
+                  );
+                  font-size: var(--single-line-body-base-font-size, 16px);
+                  line-height: var(--single-line-body-base-line-height, 100%);
+                  font-weight: var(--single-line-body-base-font-weight, 400);
+                  position: relative;
+                "
+              >
+                Button
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 0px;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-shrink: 0;
+          position: relative;
+        "
+      >
+        <div
           style="
             background: var(
-              --image-placeholder,
-              linear-gradient(to left, #e3e3e3, #e3e3e3)
+              --var-sds-color-background-default-default,
+              #ffffff
             );
+            opacity: 0.8;
+            padding: var(--var-sds-size-space-1600, 64px);
             display: flex;
-            flex-direction: column;
-            gap: 0px;
-            align-items: center;
-            justify-content: center;
-            align-self: stretch;
-            flex: 1;
+            flex-direction: row;
+            gap: var(--var-sds-size-space-1200, 48px);
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            width: var(--var-sds-responsive-device-width, 1200px);
+            height: 478px;
             position: relative;
-            overflow: hidden;
-            object-fit: cover;
           "
-          src="image1.png"
-        />
+        >
+          <img
+            class="image"
+            style="
+              background: var(
+                --image-placeholder,
+                linear-gradient(to left, #e3e3e3, #e3e3e3)
+              );
+              display: flex;
+              flex-direction: column;
+              gap: 0px;
+              align-items: center;
+              justify-content: center;
+              align-self: stretch;
+              flex: 1;
+              position: relative;
+              overflow: hidden;
+              object-fit: cover;
+            "
+            src="image0.png"
+          />
+          <img
+            class="image"
+            style="
+              background: var(
+                --image-placeholder,
+                linear-gradient(to left, #e3e3e3, #e3e3e3)
+              );
+              display: flex;
+              flex-direction: column;
+              gap: 0px;
+              align-items: center;
+              justify-content: center;
+              align-self: stretch;
+              flex: 1;
+              position: relative;
+              overflow: hidden;
+              object-fit: cover;
+            "
+            src="image1.png"
+          />
+        </div>
       </div>
     </div>
-  </div>
-  
-</body>
+  </body>
 </html>

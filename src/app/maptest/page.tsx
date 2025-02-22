@@ -1,6 +1,6 @@
 import Image from "next/image";
 // import dynamic from "next/dynamic";
-import FoodPantryMap from "../map"; 
+import FoodPantryMap from "../FoodPantryMap";
 import FoodListTable from "../FoodListTable";
 
 export default function Home() {
@@ -16,12 +16,12 @@ export default function Home() {
           priority
         /> */}
 
-{/* Food Pantry Map Component */}
-<FoodPantryMap />
-<FoodListTable />
-</main>
+        {/* Food Pantry Map Component */}
+        <FoodPantryMap />
+        <FoodListTable />
+      </main>
 
-        {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+      {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
