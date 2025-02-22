@@ -29,7 +29,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         data-theme="lemonade"
       >
         <Navbar />
-
         <main className="flex-grow">{children}</main>
         <ChatBlurb />
         <Footer />
