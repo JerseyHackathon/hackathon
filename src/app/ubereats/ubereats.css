@@ -1,9 +1,9 @@
-.App {
+/* .App {
     text-align: center;
     font-family: Arial, sans-serif;
     margin: 20px;
     border: red solid 2px;
-  }
+  } */
   
   .food-list {
     display: flex;
@@ -36,4 +36,3 @@
   .order-tracking h3 {
     color: #007bff;
   }
-  

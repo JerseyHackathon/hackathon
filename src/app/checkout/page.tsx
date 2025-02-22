@@ -1,6 +1,7 @@
 "use client";
 
 import { 
+    Button,
   Container, 
   Paper, 
   Table, 
@@ -16,6 +17,7 @@ import React, { useEffect, useState } from "react";
 function Checkout() {
   const [data, setData] = useState([]);
   const [pantry, setPantry] = useState("");
+  const [renderCount, setRenderCount] = useState(0); 
 
   useEffect(() => {
     // Retrieve the data from localStorage when the component mounts
@@ -27,6 +29,11 @@ function Checkout() {
       setPantry(JSON.parse(pantryname));
     }
   }, []);
+
+  const handleReserveClick = (data)=>{
+    data.delivery = true;
+    setRenderCount(1)
+  }
 
   return (
     <div
@@ -81,7 +88,7 @@ function Checkout() {
           <Table sx={{ minWidth: 650 }}>
             <TableHead sx={{ backgroundColor: "#008CBA" }}>
               <TableRow>
-                {["Distribution Date", "Food Type", "Quantity [per person]", "Food Name", "Calories [per unit]"].map(
+                {["Distribution Date", "Quantity [per person]", "Food Name", "Calories [per unit]", "Make Delivery"].map(
                   (header, index) => (
                     <TableCell 
                       key={index} 
@@ -105,10 +112,11 @@ function Checkout() {
                 data.map((row, count) => (
                   <TableRow key={count} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell align="center">{row.distribution_date}</TableCell>
-                    <TableCell align="center">{row.food_type}</TableCell>
+                  
                     <TableCell align="center">{row.quantity}</TableCell>
                     <TableCell align="center">{row.food_name}</TableCell>
                     <TableCell align="center">{row.calories}</TableCell>
+                    <TableCell align="center"> { row.delivery ? <Button>Check Status</Button> : <Button variant="outlined" onClick={handleReserveClick(row)}>Reserve</Button>}</TableCell>
                   </TableRow>
                 ))
               )}
