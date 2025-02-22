@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import FoodPantryMap from "./map";
+import FoodPantryMap from "./FoodPantryMap";
 import FoodListTable from "./FoodListTable";
 
 import React from "react";

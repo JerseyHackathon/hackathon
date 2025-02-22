@@ -1,36 +1,48 @@
 "use client";
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Dropdown } from '@mui/base/Dropdown';
-import { Menu } from '@mui/base/Menu';
-import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
-import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
-import { styled } from '@mui/system';
-import { CssTransition } from '@mui/base/Transitions';
-import { PopupContext } from '@mui/base/Unstable_Popup';
-import { useState } from 'react';
-import { Typography } from '@mui/material';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Dropdown } from "@mui/base/Dropdown";
+import { Menu } from "@mui/base/Menu";
+import { MenuButton as BaseMenuButton } from "@mui/base/MenuButton";
+import { MenuItem as BaseMenuItem, menuItemClasses } from "@mui/base/MenuItem";
+import { styled } from "@mui/system";
+import { CssTransition } from "@mui/base/Transitions";
+import { PopupContext } from "@mui/base/Unstable_Popup";
+import { useState } from "react";
+import { Typography } from "@mui/material";
 
 export default function MenuDropdown(props) {
-    const {option1, option2, option3, setColumn}=props
-    const [menuChoice, setMenuChoice]=useState("Choose Filter Type")
+  const { option1, option2, option3, setColumn } = props;
+  const [menuChoice, setMenuChoice] = useState("Choose Filter Type");
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setColumn(menuItem)
-      setMenuChoice(menuItem)
+      setColumn(menuItem);
+      setMenuChoice(menuItem);
     };
   };
 
   return (
-    <Dropdown color="primary" >
-       <Typography color="primary" variant="h5" sx={{paddingBottom: "10px", fontWeight: "bold", color:"#008CBA"}}>Filter By</Typography>
-      <MenuButton sx={{background:"#f0fbff", border: "1px solid #006ce0", color:"#0f141a"}}>{menuChoice}</MenuButton>
-      <Menu slots={{ listbox: AnimatedListbox }}>
+    <Dropdown color="primary">
+      <Typography
+        color="primary"
+        variant="h5"
+        sx={{ paddingBottom: "10px", fontWeight: "bold", color: "#008CBA" }}
+      >
+        Filter By
+      </Typography>
+      <MenuButton
+        sx={{
+          background: "#f0fbff",
+          border: "1px solid #006ce0",
+          color: "#0f141a",
+        }}
+      >
+        {menuChoice}
+      </MenuButton>
+      <Menu className="z-10" slots={{ listbox: AnimatedListbox }}>
         <MenuItem onClick={createHandleMenuClick(option1)}>{option1}</MenuItem>
-        <MenuItem onClick={createHandleMenuClick(option2)}>
-          {option2}
-        </MenuItem>
+        <MenuItem onClick={createHandleMenuClick(option2)}>{option2}</MenuItem>
         <MenuItem onClick={createHandleMenuClick(option3)}>{option3}</MenuItem>
       </Menu>
     </Dropdown>
@@ -38,32 +50,32 @@ export default function MenuDropdown(props) {
 }
 
 const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#99CCF3',
-  300: '#66B2FF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E6',
-  700: '#0059B3',
-  800: '#004C99',
-  900: '#003A75',
+  50: "#F0F7FF",
+  100: "#C2E0FF",
+  200: "#99CCF3",
+  300: "#66B2FF",
+  400: "#3399FF",
+  500: "#007FFF",
+  600: "#0072E6",
+  700: "#0059B3",
+  800: "#004C99",
+  900: "#003A75",
 };
 
 const grey = {
-  50: '#F3F6F9',
-  100: '#E5EAF2',
-  200: '#DAE2ED',
-  300: '#C7D0DD',
-  400: '#B0B8C4',
-  500: '#9DA8B7',
-  600: '#6B7A90',
-  700: '#434D5B',
-  800: '#303740',
-  900: '#1C2025',
+  50: "#F3F6F9",
+  100: "#E5EAF2",
+  200: "#DAE2ED",
+  300: "#C7D0DD",
+  400: "#B0B8C4",
+  500: "#9DA8B7",
+  600: "#6B7A90",
+  700: "#434D5B",
+  800: "#303740",
+  900: "#1C2025",
 };
 
-const Listbox = styled('ul')(
+const Listbox = styled("ul")(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -74,11 +86,13 @@ const Listbox = styled('ul')(
   border-radius: 12px;
   overflow: auto;
   outline: 0;
- background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+ background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
 
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+  box-shadow: 0 4px 30px ${
+    theme.palette.mode === "dark" ? grey[900] : grey[200]
+  };
   z-index: 1;
 
   .closed & {
@@ -100,7 +114,7 @@ const Listbox = styled('ul')(
   .placement-bottom & {
     transform-origin: top;
   }
-  `,
+  `
 );
 
 const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
@@ -109,11 +123,11 @@ const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
 
   if (popupContext == null) {
     throw new Error(
-      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+      "The `AnimatedListbox` component cannot be rendered outside a `Popup` component"
     );
   }
 
-  const verticalPlacement = popupContext.placement.split('-')[0];
+  const verticalPlacement = popupContext.placement.split("-")[0];
 
   return (
     <CssTransition
@@ -143,15 +157,15 @@ const MenuItem = styled(BaseMenuItem)(
   }
 
   &:focus {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    outline: 3px solid ${theme.palette.mode === "dark" ? blue[600] : blue[200]};
+    background-color: ${theme.palette.mode === "dark" ? grey[800] : grey[100]};
+    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
   }
 
   &.${menuItemClasses.disabled} {
-    color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    color: ${theme.palette.mode === "dark" ? grey[700] : grey[400]};
   }
-  `,
+  `
 );
 
 const MenuButton = styled(BaseMenuButton)(
@@ -164,24 +178,26 @@ const MenuButton = styled(BaseMenuButton)(
   border-radius: 8px;
   transition: all 150ms ease;
   cursor: pointer;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === "dark" ? grey[200] : grey[900]};
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background: ${theme.palette.mode === "dark" ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === "dark" ? grey[600] : grey[300]};
     color:#008CBA;
   }
 
   &:active {
-    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+    background: ${theme.palette.mode === "dark" ? grey[700] : grey[100]};
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    box-shadow: 0 0 0 4px ${
+      theme.palette.mode === "dark" ? blue[300] : blue[200]
+    };
     outline: none;
   }
-  `,
+  `
 );
