@@ -29,7 +29,7 @@ export default function Locations() {
 
 
         {/* Side-by-Side Layout */}
-        <div className="flex flex-col md:flex-row gap-10 w-full max-w-7xl bg-white bg-opacity-90 p-8 rounded-xl shadow-lg">
+        <div className="flex flex-col md:flex-row w-full max-w-[2000px] bg-white bg-opacity-90 p-8 rounded-xl shadow-lg">
           {/* Map Section */}
           <div className="w-full md:w-1/2 h-[1200px] rounded-lg overflow-hidden">
             <FoodPantryMap setSelectedPantryName={setSelectedPantryName} />
