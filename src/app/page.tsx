@@ -1,7 +1,6 @@
 "use client";
 
-
-import{motion} from "framer-motion";
+import { motion } from "framer-motion";
 import FoodPantryMap from "./map";
 import FoodListTable from "./FoodListTable";
 
@@ -15,11 +14,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 
-
 const Home = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900">
-      
+
+    <div
+      className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900"
+      data-theme="lemonade"
+    >
+      {/* Hero Section */}
       <div className="relative w-full h-[60vh] bg-gray-900">
         <img
           src="https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
@@ -41,13 +44,14 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            Connecting Communities, Ending Hunger   
-            PantryPal connects people to local food banks. Together, we can end hunger—one meal at a time because no one should go hungry.
+            Connecting Communities, Ending Hunger PantryPal connects people to
+            local food banks. Together, we can end hunger—one meal at a time
+            because no one should go hungry.
           </motion.p>
         </div>
       </div>
 
-     
+
       <div className="w-full max-w-4xl text-center p-8">
         <motion.h2
           className="text-3xl font-bold mb-4"
@@ -63,13 +67,13 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
         >
-          Easy Access to Food Banks – A digital platform where users can find nearby food banks.
-Efficient Donations – Connects donors (restaurants, grocery stores, individuals) with organizations that can redistribute surplus food.
-
-
+          Easy Access to Food Banks – A digital platform where users can find
+          nearby food banks. Efficient Donations – Connects donors (restaurants,
+          grocery stores, individuals) with organizations that can redistribute
+          surplus food.
         </motion.p>
 
-        
+
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
           initial={{ opacity: 0 }}
@@ -91,8 +95,8 @@ Efficient Donations – Connects donors (restaurants, grocery stores, individual
         </motion.div>
       </div>
     </div>
+    </div>
   );
 };
 
 export default Home;
-

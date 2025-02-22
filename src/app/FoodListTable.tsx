@@ -44,11 +44,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({ selectedPantryName }) => 
   const [aiTableClicked, setAiTableClicked] = useState(false)
   const [aiChef, setAiChef] = useState([{}])
   const [reservedItems, setReservedItems]=useState([])
-// const navigate = useNavigate()
-//   const navigateToDetails = () => {
-//    // const dataToSend = { message: reservedItems};
-//     navigate('/checkout', { state: { data: reservedItems } });
-//   };
+
 
   const handleReserveClick = (item)=>{
    console.log("user clicked: ", item)

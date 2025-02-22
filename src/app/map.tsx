@@ -171,73 +171,90 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({ setSelectedPantryName }) 
             ))}
 
             {/* Info Window with Details */}
-            {selectedPantry && (
-              <InfoWindow
-                position={{
-                  lat: selectedPantry.geometry.location.lat(),
-                  lng: selectedPantry.geometry.location.lng(),
-                }}
-                onCloseClick={() => setSelectedPantry(null)}
-              >
-                <div style={{ color: "black" }}>
-                
-                  <h1>{selectedPantry.name}</h1>
-                  <p><strong>Address:</strong> {selectedPantry.formatted_address || "Not available"}</p>
-                  <p><strong>Phone:</strong> {selectedPantry.formatted_phone_number || "Not available"}</p>
-                  {selectedPantry.website && (
-                    <p>
-                      <strong>Website:</strong>{" "}
-                      <a href={selectedPantry.website} target="_blank" rel="noopener noreferrer">
-                        Visit Site
-                      </a>
-                    </p>
-                  )}
-                  {selectedPantry.opening_hours ? (
-                    <div>
-                      <strong>Opening Hours:</strong>
-                      <ul>
-                        {selectedPantry.opening_hours.weekday_text.map((hour, idx) => (
-                          <li key={idx}>{hour}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <p>Opening hours not available</p>
-                  )}
-                </div>
-              </InfoWindow>
-            )}
+{selectedPantry && (
+  <InfoWindow
+    position={{
+      lat: selectedPantry.geometry.location.lat(),
+      lng: selectedPantry.geometry.location.lng(),
+    }}
+    onCloseClick={() => setSelectedPantry(null)}
+  
+  >
+    <div className="bg-white p-4 rounded-lg shadow-lg max-w-[500px] ">
+      <h2 className="text-xl font-semibold text-gray-800 mb-2">{selectedPantry.name}</h2>
+      <p className="text-gray-700">
+        <strong className="font-semibold">Address:</strong>{" "}
+        {selectedPantry.formatted_address || "Not available"}
+      </p>
+      <p className="text-gray-700">
+        <strong className="font-semibold">Phone:</strong>{" "}
+        {selectedPantry.formatted_phone_number || "Not available"}
+      </p>
+      {selectedPantry.website && (
+        <p className="text-gray-700">
+          <strong className="font-semibold">Website:</strong>{" "}
+          <a
+            href={selectedPantry.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Visit Site
+          </a>
+        </p>
+      )}
+      {selectedPantry.opening_hours ? (
+        <div className="text-gray-700">
+          <strong className="font-semibold">Opening Hours:</strong>
+          <ul className="list-disc pl-5 space-y-1">
+            {selectedPantry.opening_hours.weekday_text.map((hour, idx) => (
+              <li key={idx}>{hour}</li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <p className="text-gray-700">Opening hours not available</p>
+      )}
+    </div>
+  </InfoWindow>
+)}
+
+            )
           </GoogleMap>
         </div>
       )}
 
       {/* List of Food Pantries */}
-      <div style={{ marginTop: "20px", maxHeight: "300px", overflowY: "auto", border: "1px solid #ddd", padding: "10px", color: "black" }}>
-        <h3>Nearby Food Pantries</h3>
-        {pantries.length === 0 ? (
-          <p>No food pantries found.</p>
-        ) : (
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            {pantries.map((pantry, index) => (
-              <li
-                key={index}
-                onClick={() => fetchPantryDetails(pantry.place_id)}
-                style={{
-                  cursor: "pointer",
-                  padding: "10px",
-                  borderBottom: "1px solid #ddd",
-                  backgroundColor: selectedPantry?.place_id === pantry.place_id ? "#f0f0f0" : "white",
-                  color: "black",
-                }}
-              >
-                <strong>{pantry.name}</strong>
-                <br />
-                {pantry.vicinity || "Address not available"}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+<div className="mt-5 max-h-[530px] overflow-y-auto border border-gray-300 p-4 bg-white rounded-lg shadow-md">
+<h3 className="text-3xl font-semibold text-gray-800 mb-3 font-[Inter] text-center relative shimmer-effect">
+  Nearby Food Pantries
+</h3>
+
+  
+  {pantries.length === 0 ? (
+    <p className="text-gray-600">No food pantries found.</p>
+  ) : (
+    <ul className="space-y-2">
+      {pantries.map((pantry, index) => (
+        <li
+          key={index}
+          onClick={() => fetchPantryDetails(pantry.place_id)}
+          className={`cursor-pointer p-3 rounded-lg border border-gray-200 transition-all 
+                      ${
+                        selectedPantry?.place_id === pantry.place_id 
+                        ? "bg-gray-100 border-gray-400" 
+                        : "hover:bg-gray-50"
+                      }`}
+        >
+          <strong className="text-lg text-gray-900">{pantry.name}</strong>
+          <br />
+          <span className="text-sm text-gray-600">{pantry.vicinity || "Address not available"}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
     </div>
   );
 };

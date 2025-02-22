@@ -7,63 +7,40 @@ import FoodListTable from "../FoodListTable";
 import { DeepChat } from "deep-chat-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
+
 //push up to here 
 //I can send it down to food list table as prop
 //then I can render based on the prop
 import { useState } from "react";
 
+
 export default function Locations() {
   const [selectedPantryName, setSelectedPantryName] = useState<string | null>(null);
 
   return (
-    <div className="bg-white flex flex-col overflow-hidden">
-      <div className="w-full max-w-screen-5xl h-[1300px] flex flex-col relative">
-        <div className="bg-white bg-opacity-80 p-40 flex flex-col gap-8 items-center justify-center w-full relative">
-          <h1 className="text-black text-center font-bold text-[72px] leading-[120%] -tracking-[0.03em]">
-            Find a pantry near you
-          </h1>
+    <div className="relative w-full min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/pantry.jpg')" }}>
+      {/* Semi-transparent overlay for better readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-          {/* Side-by-Side Layout */}
-          <div className="flex gap-20 w-full">
-            <div className="w-1/2">
-              {/* Pass down the setter function to update selected pantry */}
-              <FoodPantryMap setSelectedPantryName={setSelectedPantryName} />
-            </div>
-            <div className="w-1/2">
-              {/* Pass the selected pantry name as a prop */}
-              <FoodListTable selectedPantryName={selectedPantryName} />
-            </div>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8">
+      <h1 className="text-white text-center font-bold text-6xl md:text-7xl leading-tight tracking-tight mb-12 font-[Poppins]">
+  Find a Pantry Near You
+</h1>
+
+
+        {/* Side-by-Side Layout */}
+        <div className="flex flex-col md:flex-row w-full max-w-[2000px] bg-white bg-opacity-90 p-8 rounded-xl shadow-lg">
+          {/* Map Section */}
+          <div className="w-full md:w-1/2 h-[1200px] rounded-lg overflow-hidden">
+            <FoodPantryMap setSelectedPantryName={setSelectedPantryName} />
+          </div>
+
+          {/* Food List Section */}
+          <div className="w-full md:w-1/2">
+            <FoodListTable selectedPantryName={selectedPantryName} />
           </div>
         </div>
       </div>
-      {/* Image Section */}
-      <div className="bg-white bg-opacity-80 p-16 flex flex-row gap-12 w-[700px] h-[478px] relative">
-        <FontAwesomeIcon icon={faRobot} className="text-blue-500 w-10 h-10" />
-        
-        
-                      <DeepChat
-                        style={{ borderRadius: "20px", width: "500px" }}
-                        textInput={{ placeholder: { text: "What is in your pantry?" } }}
-                        directConnection={{
-                          openAI: {
-                            key: `${process.env.NEXT_PUBLIC_openAIKey}`,
-                            chat: {
-                              max_tokens: 2000,
-                              system_prompt:
-                                "Given these food items give me some healthy dishes i can make with them and then assist me with anything i can. Be as concise as possible",
-                            },
-                          },
-                        }}
-                      />
-                    </div>
-        {/* <Image
-          className="flex-1 object-cover"
-          src="/image1.png"
-          alt="Image 1"
-          width={600}
-          height={478}
-        /> */}
-      </div>
-    
+    </div>
   );
 }
