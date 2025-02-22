@@ -202,21 +202,21 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({
                 }}
                 onCloseClick={() => setSelectedPantry(null)}
               >
-                <div className="bg-white p-4 rounded-lg shadow-lg max-w-[500px] ">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                <div className="font-semibold bg-white p-4 rounded-lg shadow-lg max-w-[500px] ">
+                  <h2 className="text-xl text-gray-800 mb-2">
                     {selectedPantry.name}
                   </h2>
                   <p className="text-gray-700">
-                    <strong className="font-semibold">Address:</strong>{" "}
+                    <strong className="">Address:</strong>{" "}
                     {selectedPantry.formatted_address || "Not available"}
                   </p>
                   <p className="text-gray-700">
-                    <strong className="font-semibold">Phone:</strong>{" "}
+                    <strong className="">Phone:</strong>{" "}
                     {selectedPantry.formatted_phone_number || "Not available"}
                   </p>
                   {selectedPantry.website && (
                     <p className="text-gray-700">
-                      <strong className="font-semibold">Website:</strong>{" "}
+                      <strong className="">Website:</strong>{" "}
                       <a
                         href={selectedPantry.website}
                         target="_blank"
@@ -229,7 +229,7 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({
                   )}
                   {selectedPantry.opening_hours ? (
                     <div className="text-gray-700">
-                      <strong className="font-semibold">Opening Hours:</strong>
+                      <strong className="">Opening Hours:</strong>
                       <ul className="list-disc pl-5 space-y-1">
                         {selectedPantry.opening_hours.weekday_text.map(
                           (hour, idx) => (
@@ -250,7 +250,7 @@ const FoodPantryMap: React.FC<FoodPantryMapProps> = ({
 
       {/* List of Food Pantries */}
       <div className="mt-5 max-h-[530px] overflow-y-auto border border-gray-300 p-4 bg-white rounded-lg shadow-md">
-        <h3 className="text-3xl font-semibold text-gray-800 mb-3 font-[Inter] text-center relative shimmer-effect">
+        <h3 className="text-3xl text-gray-800 mb-3 text-center relative shimmer-effect">
           Nearby Food Pantries
         </h3>
 
