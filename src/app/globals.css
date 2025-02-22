@@ -45,8 +45,4 @@ body {
   animation: shimmer 2s infinite linear;
 }
 
-.gm-style-iw-chr {
-  margin: 0 !important; /* Remove any margin */
-  padding: 0 !important; /* Remove any padding */
-  background: transparent !important; /* Optional: make background transparent if needed */
-}
+
