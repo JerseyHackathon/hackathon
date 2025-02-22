@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- disabled, needed for just getting compilation to work, WONT AFFECT ANYTHING */
 import type { Config } from "tailwindcss";
 import daisyui from "daisyui";
+import { withAnimations } from "animated-tailwindcss";
 
-export default {
+export default withAnimations({
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,5 +20,5 @@ export default {
       },
     },
   },
-  plugins: [daisyui],
-} satisfies Config;
+  plugins: [daisyui as any],
+}) as Config;

@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 
 :root {
   --background: #ffffff;
@@ -25,13 +23,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 @keyframes shimmer {
-  0% { background-position: -200% 50%; }
-  100% { background-position: 200% 50%; }
+  0% {
+    background-position: -200% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
 .shimmer-effect {
   display: inline-block;
-  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(15, 67, 139, 0.8) 50%, rgba(255,255,255,0.1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(15, 67, 139, 0.8) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -39,8 +46,7 @@ body {
 }
 
 .gm-style-iw-chr {
-  margin: 0 !important;        /* Remove any margin */
-  padding: 0 !important;       /* Remove any padding */
-  background: transparent !important;  /* Optional: make background transparent if needed */
+  margin: 0 !important; /* Remove any margin */
+  padding: 0 !important; /* Remove any padding */
+  background: transparent !important; /* Optional: make background transparent if needed */
 }
-
