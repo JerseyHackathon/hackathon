@@ -19,11 +19,11 @@ import { FaGooglePlay, FaApple } from "react-icons/fa";
 const Home = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-900">
-      {/* Hero Section */}
+      
       <div className="relative w-full h-[60vh] bg-gray-900">
         <img
           src="https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
-          alt="App Preview"
+          alt="HomePage Image"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white p-6">
@@ -47,7 +47,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Content Section */}
+     
       <div className="w-full max-w-4xl text-center p-8">
         <motion.h2
           className="text-3xl font-bold mb-4"
@@ -69,7 +69,7 @@ Efficient Donations – Connects donors (restaurants, grocery stores, individual
 
         </motion.p>
 
-        {/* CTA Buttons */}
+        
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
           initial={{ opacity: 0 }}
@@ -80,7 +80,7 @@ Efficient Donations – Connects donors (restaurants, grocery stores, individual
             href="#"
             className="flex items-center bg-blue-600 text-white py-2 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
           >
-            <FaGooglePlay className="mr-2" /> Get on Google Play
+            <FaGooglePlay className="mr-2" /> Download on Play Store
           </a>
           <a
             href="#"
