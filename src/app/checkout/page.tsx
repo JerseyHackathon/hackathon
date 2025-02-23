@@ -131,7 +131,7 @@ useEffect(() => {
           <Table sx={{ minWidth: 650 }}>
             <TableHead sx={{ backgroundColor: "#008CBA" }}>
               <TableRow>
-                {["Distribution Date", "Quantity [per person]", "Food Name", "Calories [per unit]", "Make Delivery"].map(
+                {["Pickup Date", "Quantity [per person]", "Food Name", "Calories [per unit]", "Request Delivery"].map(
                   (header, index) => (
                     <TableCell 
                       key={index} 
