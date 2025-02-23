@@ -19,6 +19,7 @@ function Checkout() {
   const [data, setData] = useState([]);
   const [pantry, setPantry] = useState("");
   const [renderCount, setRenderCount] = useState(0); 
+  const [stripeFlag, setStripeFlag] = useState(false)
   const [checkStatusFlag, setCheckStatusFlag] = useState(false)
 const [checkStatusOrder, setCheckStatusOrder] = useState({})
 useEffect(() => {
@@ -46,15 +47,35 @@ useEffect(() => {
     }
   }, []);
 
+  useEffect(()=>{
+
+  },[checkStatusOrder])
+
   const handleReserveClick = (data)=>{
+    setStripeFlag(true)
+    setCheckStatusFlag(false)
+
     data.delivery = true;
     setRenderCount((prev) => prev + 1);
   }
 
   const handleCheckStatus = (data)=>{
+//const newOrder = {name: data.food_name, price: (parseFloat(data.price) + 1).toString() }
+ setCheckStatusOrder(prevOrder => {
+    // Update price based on the previous price value
+    const newPrice = parseFloat(data.price) + 1; // Increment price
+    const newOrder = { 
+      name: data.food_name, 
+      price: newPrice.toString()  // Convert price back to string
+    };
     
+    return newOrder; // Return the new order state
+  })
+
     setCheckStatusFlag(!checkStatusFlag)
-    setCheckStatusOrder({id:Math.random(),name: data.food_name, price: "4" })
+    setStripeFlag(false)
+    console.log("button clicked")
+
   }
 
   return (
@@ -153,13 +174,14 @@ useEffect(() => {
              
                </div> : ""
 }
-                <div>
+              { stripeFlag ? <div>
         <stripe-buy-button
   buy-button-id="buy_btn_1QvTrlHrcEvbYCTHe4TEogR3"
   publishable-key="pk_test_51Qv4FjHrcEvbYCTH0I4fQHu91pMSES7i1D3LkvOGVVCAXDDBbL9fE1fMiVeqrFDiQxtk76mKeYJ8iudVtvfXGeGU00JeMQAmpZ"
 >
 </stripe-buy-button>
-</div>
+</div> : ""
+}
 </div>
       </Container>
    
