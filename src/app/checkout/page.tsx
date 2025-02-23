@@ -13,12 +13,14 @@ import {
   Typography 
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import UberEats from "../ubereats/page";
 
 function Checkout() {
   const [data, setData] = useState([]);
   const [pantry, setPantry] = useState("");
   const [renderCount, setRenderCount] = useState(0); 
-
+  const [checkStatusFlag, setCheckStatusFlag] = useState(false)
+const [checkStatusOrder, setCheckStatusOrder] = useState({})
 useEffect(() => {
     // Dynamically load the Stripe script
     const script = document.createElement('script');
@@ -47,6 +49,12 @@ useEffect(() => {
   const handleReserveClick = (data)=>{
     data.delivery = true;
     setRenderCount((prev) => prev + 1);
+  }
+
+  const handleCheckStatus = (data)=>{
+    
+    setCheckStatusFlag(!checkStatusFlag)
+    setCheckStatusOrder({id:Math.random(),name: data.food_name, price: "4" })
   }
 
   return (
@@ -130,7 +138,7 @@ useEffect(() => {
                     <TableCell align="center">{row.quantity}</TableCell>
                     <TableCell align="center">{row.food_name}</TableCell>
                     <TableCell align="center">{row.calories}</TableCell>
-                    <TableCell align="center"> { row.delivery ? <Button>Check Status</Button> : <Button variant="contained" onClick={()=>handleReserveClick(row)}>Deliver</Button>}</TableCell>
+                    <TableCell align="center"> { row.delivery ? <Button onClick={()=> handleCheckStatus(row)}>Check Status</Button> : <Button variant="contained" onClick={()=>handleReserveClick(row)}>Deliver</Button>}</TableCell>
                     
                   </TableRow>
                 ))
@@ -139,8 +147,12 @@ useEffect(() => {
           </Table>
         
         </TableContainer>
-              <div style={{  display:"flex", justifyContent:"right", paddingTop:"20px" }}> 
-               
+              <div style={{  display:"flex", justifyContent:"space-around", paddingTop:"20px", gap:"20px"}}> 
+             { checkStatusFlag ?  <div>
+                <UberEats foodItems={ checkStatusOrder}/>
+             
+               </div> : ""
+}
                 <div>
         <stripe-buy-button
   buy-button-id="buy_btn_1QvTrlHrcEvbYCTHe4TEogR3"
