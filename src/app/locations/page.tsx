@@ -26,7 +26,7 @@ export default function Locations() {
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8">
-        <h1 className="text-white text-center text-6xl md:text-7xl mb-12 mt-3 py-4 font-[Poppins]">
+        <h1 className="text-white text-center text-6xl md:text-7xl mb-12 mt-3 py-4 font-[Arial]">
           Find a Pantry Near You
         </h1>
 

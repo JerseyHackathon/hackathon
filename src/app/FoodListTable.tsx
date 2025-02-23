@@ -20,88 +20,89 @@ type MockData = {
   food_name: string;
   calories: string;
   reserved: boolean;
+  delivery: boolean;
 };
 
 const mockData = [
   {
     distribution_date: "2/20/25",
-    food_type: "CANNED VEGETABLES",
-    quantity: "2",
+    quantity: "2 cans",
     food_name: "Green Beans",
     calories: "34",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/21/25",
-    food_type: "CANNED FRUITS",
-    quantity: "1",
+    quantity: "1 can",
     food_name: "Peaches",
     calories: "50",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/22/25",
-    food_type: "HOT AND COLD CEREALS",
-    quantity: "3",
+    quantity: "3 boxes",
     food_name: "Oatmeal",
     calories: "150",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/23/25",
-    food_type: "RICE/PASTA",
-    quantity: "1",
+    quantity: "1 case",
     food_name: "Spaghetti",
     calories: "200",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/24/25",
-    food_type: "CANNED MEATS",
-    quantity: "4",
+    quantity: "4 cans",
     food_name: "Chicken Breast",
     calories: "210",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/25/25",
-    food_type: "CANNED VEGETABLES",
-    quantity: "2",
+    quantity: "2 cans",
     food_name: "Corn",
     calories: "120",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/26/25",
-    food_type: "CANNED FRUITS",
-    quantity: "3",
+    quantity: "3 cans",
     food_name: "Pineapple",
     calories: "90",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/27/25",
-    food_type: "HOT AND COLD CEREALS",
-    quantity: "2",
+    quantity: "2 boxes",
     food_name: "Corn Flakes",
     calories: "100",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "2/28/25",
-    food_type: "RICE/PASTA",
-    quantity: "1",
+    quantity: "1 bag",
     food_name: "Brown Rice",
     calories: "215",
     reserved: false,
+    delivery: false,
   },
   {
     distribution_date: "3/1/25",
-    food_type: "CANNED MEATS",
-    quantity: "5",
+    quantity: "5 cans",
     food_name: "Salmon",
     calories: "250",
     reserved: false,
+    delivery: false,
   },
 ];
 
@@ -198,7 +199,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
   useEffect(() => {
     if (selectedPantryName) {
       console.log("setting");
-      setFilteredRows(getRandomItems(mockData, 5));
+      setFilteredRows(getRandomItems(mockData, 8));
     }
   }, [selectedPantryName]);
 
@@ -209,14 +210,14 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
     const filteredData = mockData.filter((row) =>
       row[column].toLowerCase().startsWith(query.toLowerCase())
     );
-    setFilteredRows(getRandomItems(filteredData, 5));
+    setFilteredRows(getRandomItems(filteredData, 8));
   };
 
   return (
     <Container sx={{}}>
       <Typography
         variant="h4"
-        sx={{ marginBottom: 5, color: "#008CBA", fontWeight: "bold" }}
+        sx={{ marginBottom: 5, color: "#008CBA", fontWeight: "bold", fontFamily:"Arial" }}
       >
         Food Available for Pickup
       </Typography>
@@ -229,7 +230,6 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
 
       <MenuDropDown
         option1="distribution_date"
-        option2="food_type"
         option3="food_name"
         setColumn={setColumn}
       />
@@ -243,25 +243,25 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
         style={{ marginBottom: "20px" }}
       />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650, fontFamily:"Arial" }} aria-label="simple table" >
           <TableHead>
             <TableRow>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell style={{ fontWeight: "bold", fontFamily:"Arial"  }} align="center">
                 Distribution Date
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              {/* <TableCell style={{ fontWeight: "bold" }} align="center">
                 Food Type
+              </TableCell> */}
+              <TableCell style={{ fontWeight: "bold", fontFamily:"Arial"  }} align="center">
+                Quantity [per person]
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Quantity[per person]
+              <TableCell style={{ fontWeight: "bold", fontFamily:"Arial"  }} align="center">
+                Food
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Food Name
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell style={{ fontWeight: "bold", fontFamily:"Arial"  }} align="center">
                 Calories [per unit]
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell style={{ fontWeight: "bold",fontFamily:"Arial"  }} align="center">
                 Reserve
               </TableCell>
             </TableRow>
@@ -273,7 +273,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="center">{row.distribution_date}</TableCell>
-                <TableCell align="center">{row.food_type}</TableCell>
+                {/* <TableCell align="center">{row.food_type}</TableCell> */}
                 <TableCell align="center">{row.quantity}</TableCell>
                 <TableCell align="center">{row.food_name}</TableCell>
                 <TableCell align="center">{row.calories}</TableCell>
@@ -284,7 +284,7 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
                     disabled={row.reserved}
                     variant="text"
                   >
-                    Add Item
+                    Add
                   </Button>
                 </TableCell>
               </TableRow>
@@ -292,17 +292,19 @@ const FoodListTable: React.FC<FoodListTableProps> = ({
           </TableBody>
         </Table>
       </TableContainer>
+      <div style={{display: "flex", justifyContent: "flex-end", gap:"10px", paddingTop: "20px" }}>
       <Button
         onClick={handleAIchefClick}
-        sx={{ margin: "50px" }}
-        variant="outlined"
+        variant="contained"
+        color="primary"
       >
         Explore AI chef meals
       </Button>
-      <Button variant="outlined" href="/checkout">
+      <Button color="primary" variant="contained" href="/checkout">
         Checkout
       </Button>
-
+      </div>
+  
       {aiTableClicked ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -1,6 +1,7 @@
 "use client";
 
 import { 
+    Button,
   Container, 
   Paper, 
   Table, 
@@ -12,10 +13,28 @@ import {
   Typography 
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import UberEats from "../ubereats/page";
 
 function Checkout() {
   const [data, setData] = useState([]);
   const [pantry, setPantry] = useState("");
+  const [renderCount, setRenderCount] = useState(0); 
+  const [stripeFlag, setStripeFlag] = useState(false)
+  const [checkStatusFlag, setCheckStatusFlag] = useState(false)
+const [checkStatusOrder, setCheckStatusOrder] = useState({})
+useEffect(() => {
+    // Dynamically load the Stripe script
+    const script = document.createElement('script');
+    script.src = "https://js.stripe.com/v3/buy-button.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Clean up the script tag when component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
 
   useEffect(() => {
     // Retrieve the data from localStorage when the component mounts
@@ -27,6 +46,37 @@ function Checkout() {
       setPantry(JSON.parse(pantryname));
     }
   }, []);
+
+  useEffect(()=>{
+
+  },[checkStatusOrder])
+
+  const handleReserveClick = (data)=>{
+    setStripeFlag(true)
+    setCheckStatusFlag(false)
+
+    data.delivery = true;
+    setRenderCount((prev) => prev + 1);
+  }
+
+  const handleCheckStatus = (data)=>{
+//const newOrder = {name: data.food_name, price: (parseFloat(data.price) + 1).toString() }
+ setCheckStatusOrder(prevOrder => {
+    // Update price based on the previous price value
+    const newPrice = parseFloat(data.price) + 1; // Increment price
+    const newOrder = { 
+      name: data.food_name, 
+      price: newPrice.toString()  // Convert price back to string
+    };
+    
+    return newOrder; // Return the new order state
+  })
+
+    setCheckStatusFlag(!checkStatusFlag)
+    setStripeFlag(false)
+    console.log("button clicked")
+
+  }
 
   return (
     <div
@@ -81,7 +131,7 @@ function Checkout() {
           <Table sx={{ minWidth: 650 }}>
             <TableHead sx={{ backgroundColor: "#008CBA" }}>
               <TableRow>
-                {["Distribution Date", "Food Type", "Quantity [per person]", "Food Name", "Calories [per unit]"].map(
+                {["Distribution Date", "Quantity [per person]", "Food Name", "Calories [per unit]", "Make Delivery"].map(
                   (header, index) => (
                     <TableCell 
                       key={index} 
@@ -105,17 +155,36 @@ function Checkout() {
                 data.map((row, count) => (
                   <TableRow key={count} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell align="center">{row.distribution_date}</TableCell>
-                    <TableCell align="center">{row.food_type}</TableCell>
+                  
                     <TableCell align="center">{row.quantity}</TableCell>
                     <TableCell align="center">{row.food_name}</TableCell>
                     <TableCell align="center">{row.calories}</TableCell>
+                    <TableCell align="center"> { row.delivery ? <Button onClick={()=> handleCheckStatus(row)}>Check Status</Button> : <Button variant="contained" onClick={()=>handleReserveClick(row)}>Deliver</Button>}</TableCell>
+                    
                   </TableRow>
                 ))
               )}
             </TableBody>
           </Table>
+        
         </TableContainer>
+              <div style={{  display:"flex", justifyContent:"space-around", paddingTop:"20px", gap:"20px"}}> 
+             { checkStatusFlag ?  <div>
+                <UberEats foodItems={ checkStatusOrder}/>
+             
+               </div> : ""
+}
+              { stripeFlag ? <div>
+        <stripe-buy-button
+  buy-button-id="buy_btn_1QvTrlHrcEvbYCTHe4TEogR3"
+  publishable-key="pk_test_51Qv4FjHrcEvbYCTH0I4fQHu91pMSES7i1D3LkvOGVVCAXDDBbL9fE1fMiVeqrFDiQxtk76mKeYJ8iudVtvfXGeGU00JeMQAmpZ"
+>
+</stripe-buy-button>
+</div> : ""
+}
+</div>
       </Container>
+   
     </div>
   );
 }

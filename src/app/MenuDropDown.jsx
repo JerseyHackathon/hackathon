@@ -27,7 +27,7 @@ export default function MenuDropdown(props) {
       <Typography
         color="primary"
         variant="h5"
-        sx={{ paddingBottom: "10px", fontWeight: "bold", color: "#008CBA" }}
+        sx={{ paddingBottom: "10px", fontWeight: "bold", color: "#008CBA", fontFamily:"Arial" }}
       >
         Filter By
       </Typography>
