@@ -60,9 +60,19 @@ useEffect(() => {
   }
 
   const handleCheckStatus = (data)=>{
-const newOrder = {id:Math.random(),name: data.food_name, price: "4" }
-    setCheckStatusOrder(newOrder)
-    setCheckStatusFlag(true)
+//const newOrder = {name: data.food_name, price: (parseFloat(data.price) + 1).toString() }
+ setCheckStatusOrder(prevOrder => {
+    // Update price based on the previous price value
+    const newPrice = parseFloat(data.price) + 1; // Increment price
+    const newOrder = { 
+      name: data.food_name, 
+      price: newPrice.toString()  // Convert price back to string
+    };
+    
+    return newOrder; // Return the new order state
+  })
+
+    setCheckStatusFlag(!checkStatusFlag)
     setStripeFlag(false)
     console.log("button clicked")
 
