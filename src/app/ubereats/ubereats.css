@@ -1,0 +1,38 @@
+/* .App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    border: red solid 2px;
+  } */
+  
+  .food-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .food-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .food-item button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .food-item button:hover {
+    background-color: #218838;
+  }
+  
+  .order-tracking {
+    text-align: center;
+  }
+  
+  .order-tracking h3 {
+    color: #007bff;
+  }
