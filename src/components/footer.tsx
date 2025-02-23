@@ -4,10 +4,10 @@ import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 export const Footer = () => (
-  <footer className="bg-gray-900 text-white">
+  <footer className="bg-gray-900 text-white" style={{fontFamily: "Arial, Helvetica !important"}}>
     <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-1">
       <div>
-        <h2 className="text-1g font-bold mb-4">
+        <h2 className="text-1g p-2 font-bold mb-4">
           <Link href="/" className="hover:underline">
             PantryPal
           </Link>
@@ -42,9 +42,9 @@ export const Footer = () => (
         </Link>
       </div>
     </div>
-
+{/* 
     <div className="w-full flex justify-center items-center border-t border-gray-600 pt-6 text-gray-300 mt-6">
       <p> All Rights Reserved @PantryPal</p>
-    </div>
+    </div> */}
   </footer>
 );
